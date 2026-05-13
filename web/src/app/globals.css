@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #fafaf7;
+  --color-foreground: #0a0a0a;
+  --color-muted: #6b6b66;
+  --color-subtle: #a3a39c;
+  --color-line: #ececea;
+  --color-card: #ffffff;
+  --color-accent: #d97706;
+  --color-accent-soft: #fef3c7;
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-instrument-serif);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #111;
+  color: #fafaf7;
+}
+
+/* Subtle grain texture overlay for the hero */
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Spotlight gradient used behind the hero headline */
+.spotlight {
+  background: radial-gradient(
+      60% 60% at 50% 0%,
+      rgba(217, 119, 6, 0.08) 0%,
+      rgba(217, 119, 6, 0) 70%
+    ),
+    radial-gradient(
+      50% 80% at 80% 20%,
+      rgba(120, 113, 108, 0.07) 0%,
+      rgba(120, 113, 108, 0) 70%
+    );
+}
+
+/* Animated underline accent */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.accent-shimmer {
+  background: linear-gradient(
+    90deg,
+    #0a0a0a 0%,
+    #d97706 25%,
+    #0a0a0a 50%,
+    #d97706 75%,
+    #0a0a0a 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Faux marquee for logo strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+/* Reveal-on-load */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.rise-delay-1 { animation-delay: 0.08s; }
+.rise-delay-2 { animation-delay: 0.16s; }
+.rise-delay-3 { animation-delay: 0.24s; }
+.rise-delay-4 { animation-delay: 0.32s; }
+.rise-delay-5 { animation-delay: 0.40s; }
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid #0a0a0a;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
