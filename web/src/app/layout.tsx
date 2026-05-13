@@ -20,14 +20,14 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Lumen — Quiet software for focused work",
+  title: "ATLAS — Wholesale, in motion.",
   description:
-    "Lumen is a calm, opinionated workspace for makers. Join the private beta.",
-  metadataBase: new URL("https://lumen.example.com"),
+    "ATLAS is the wholesale platform that moves goods, paperwork, and payments at the speed of your retail buyers.",
+  metadataBase: new URL("https://atlas.example.com"),
   openGraph: {
-    title: "Lumen — Quiet software for focused work",
+    title: "ATLAS — Wholesale, in motion.",
     description:
-      "A calm, opinionated workspace for makers. Join the private beta.",
+      "The wholesale platform that moves goods, paperwork, and payments at the speed of your retail buyers.",
     type: "website",
   },
 };
@@ -42,7 +42,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col overflow-x-hidden">
+        {children}
+      </body>
     </html>
   );
 }

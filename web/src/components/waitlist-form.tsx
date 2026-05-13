@@ -2,31 +2,33 @@
 
 import { useState } from "react";
 
-export function WaitlistForm() {
+export function AccessForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">(
     "idle"
   );
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+    if (!email || !/^\S+@\S+\.\S+$/.test(email) || !company.trim()) {
       setStatus("error");
       return;
     }
     setStatus("submitting");
-    await new Promise((r) => setTimeout(r, 600));
+    await new Promise((r) => setTimeout(r, 700));
     setStatus("done");
   }
 
   if (status === "done") {
     return (
-      <div className="mx-auto max-w-md rounded-xl border border-line bg-card px-5 py-4 text-left shadow-[0_1px_0_rgba(0,0,0,0.02)]">
+      <div className="glass-strong mx-auto max-w-md rounded-2xl px-5 py-4 text-left">
         <p className="text-sm font-medium text-foreground">
-          You&rsquo;re on the list.
+          Request received.
         </p>
         <p className="mt-1 text-sm text-muted">
-          We&rsquo;ll be in touch from <span className="font-mono">hello@lumen.app</span> when your invite is ready.
+          A wholesale specialist will reach out within 24 hours from{" "}
+          <span className="font-mono text-accent">partners@atlas.co</span>.
         </p>
       </div>
     );
@@ -35,41 +37,66 @@ export function WaitlistForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="mx-auto flex w-full max-w-md flex-col gap-2 sm:flex-row sm:items-center"
+      className={`mx-auto w-full ${compact ? "max-w-md" : "max-w-xl"}`}
     >
-      <label htmlFor="email" className="sr-only">
-        Email
-      </label>
-      <input
-        id="email"
-        type="email"
-        required
-        autoComplete="email"
-        placeholder="you@studio.com"
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-          if (status === "error") setStatus("idle");
-        }}
-        className="flex-1 rounded-lg border border-line bg-card px-4 py-3 text-sm text-foreground placeholder:text-subtle focus:border-foreground focus:outline-none"
-        aria-invalid={status === "error"}
-      />
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="group inline-flex items-center justify-center gap-1.5 rounded-lg bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
+      <div
+        className={`glass-strong rounded-2xl p-1.5 ${
+          compact ? "" : "sm:p-2"
+        } flex flex-col gap-1.5 sm:flex-row sm:items-center`}
       >
-        {status === "submitting" ? "Joining…" : "Request invite"}
-        <span
-          aria-hidden
-          className="transition-transform group-hover:translate-x-0.5"
+        <input
+          type="text"
+          required
+          autoComplete="organization"
+          placeholder="Company name"
+          value={company}
+          onChange={(e) => {
+            setCompany(e.target.value);
+            if (status === "error") setStatus("idle");
+          }}
+          className="flex-1 rounded-xl bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-subtle focus:outline-none"
+          aria-invalid={status === "error" && !company.trim()}
+        />
+        <span className="hidden h-6 w-px bg-line sm:block" />
+        <input
+          type="email"
+          required
+          autoComplete="email"
+          placeholder="work@company.com"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (status === "error") setStatus("idle");
+          }}
+          className="flex-1 rounded-xl bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-subtle focus:outline-none"
+          aria-invalid={
+            status === "error" &&
+            (!email || !/^\S+@\S+\.\S+$/.test(email))
+          }
+        />
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="group relative inline-flex items-center justify-center gap-1.5 overflow-hidden rounded-xl px-5 py-3 text-sm font-medium text-background transition disabled:cursor-not-allowed disabled:opacity-60"
+          style={{
+            background:
+              "linear-gradient(110deg, #5eead4 0%, #a78bfa 50%, #f472b6 100%)",
+          }}
         >
-          →
-        </span>
-      </button>
+          <span className="relative z-10">
+            {status === "submitting" ? "Submitting…" : "Request access"}
+          </span>
+          <span
+            aria-hidden
+            className="relative z-10 transition-transform group-hover:translate-x-0.5"
+          >
+            →
+          </span>
+        </button>
+      </div>
       {status === "error" && (
-        <p className="sr-only" role="alert">
-          Please enter a valid email.
+        <p className="mt-2 text-xs text-accent-3" role="alert">
+          Add a company name and a valid work email.
         </p>
       )}
     </form>
