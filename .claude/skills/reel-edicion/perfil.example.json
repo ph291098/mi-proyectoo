@@ -1,0 +1,26 @@
+{
+  "handle": "@tu_usuario",
+  "idioma": "es",
+  "plataformas": ["reels", "tiktok"],
+  "colores": {
+    "accent": "#3DD6F5",
+    "highlight": "#3DD6F5",
+    "ink": "#0B0F14",
+    "text": "#FFFFFF",
+    "soft": "#D6DCE5",
+    "line": "#7C8794",
+    "ok": "#4ADE80",
+    "alert": "#FB7185"
+  },
+  "fuente": { "principal": "Inter", "mono": "JetBrains Mono" },
+  "subtitulos": { "upper": true, "size": 80, "maxWords": 4, "band": false, "byBrand": true },
+  "plano": { "fuente_habitual": "camara", "espacio_libre": "izquierda" },
+  "audio": { "biblioteca": "~/ReelKit", "efectos": true, "musica": false, "micro": "cercano" },
+  "cta": { "tipo": "pregunta", "verbo": "comenta" },
+  "transcripcion": "mlx-whisper",
+  "marcas_frecuentes": ["notion", "whatsapp"],
+  "notas": {
+    "tono": "directo, cercano, sin tecnicismos innecesarios",
+    "evitar": ["emojis en las tarjetas", "destellos de color en las transiciones"]
+  }
+}

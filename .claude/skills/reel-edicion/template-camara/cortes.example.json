@@ -1,0 +1,66 @@
+{
+  "_ejemplo": "DEMO con guion ficticio (scripts/demo_words.py). Enseña el formato de cortes.json: las claves que empiezan por _ son notas de auditoría y el script las ignora a cualquier profundidad. handle: si falta, sale de tu perfil.",
+  "c1": {
+    "kicker": "lo que ya no hago a mano",
+    "_kicker": "el kicker vive en el raíl (zona libre del plano) y lo sustituyen las secciones en cuanto entra la primera.",
+    "title": null,
+    "keyword": null,
+    "_keyword": "sin recurso que entregar no hay «comenta X»: el cierre es una pregunta abierta (grandes.pregunta). Si en el audio prometes algo, entonces sí: { \"verb\": \"comenta\", \"word\": \"GUÍA\", \"start\": 36.1 }.",
+
+    "punches": [],
+    "_punches": "golpes de movimiento (s) que hacen de corte en un plano continuo. Aquí el ritmo ya lo llevan los spans de work/c1_spans.json.",
+
+    "topics": [{ "logo": "notion", "start": 23.2, "end": 25.1 }],
+    "_topics": "de qué marca se habla en cada tramo: pinta el chip y da el color del resalte del subtítulo (CAPTIONS.byBrand).",
+
+    "fix": {},
+    "_fix_verificado_por_contexto": {
+      "ejemplo": "en un reel real: { \"cloud\": \"Claude\" } si el transcriptor escribe «Cloud» y por contexto es Claude. Anclado a un segundo: { \"cloud@16.70\": \"Nextcloud\" }. Solo errores del transcriptor, nunca del hablante."
+    },
+
+    "teaser": { "start": 0.7, "end": 7.2, "kicker": "de fácil a rentable",
+                "items": ["Correos", "Reuniones", "Contenido"], "sweepFrom": 4.6, "sweepTo": 6.9 },
+    "_teaser": "la promesa del hook: se ve que hay tres cosas y no se lee cuáles. Las etiquetas son las MISMAS que las de sections: lo que aquí no se lee, luego se lee.",
+
+    "sections": [
+      { "n": 1, "label": "Correos",   "start": 7.48,  "end": 17.2 },
+      { "n": 2, "label": "Reuniones", "start": 17.24, "end": 25.1 },
+      { "n": 3, "label": "Contenido", "start": 25.13, "end": 36.0 }
+    ],
+
+    "flows": [
+      { "t": "flow", "start": 9.6, "end": 16.9, "kicker": "cada mañana", "layout": "chain",
+        "nodes": [ { "icon": "mail", "label": "bandeja", "at": 9.72 },
+                   { "icon": "bot", "label": "agente", "at": 10.74 },
+                   { "icon": "list-checks", "label": "urgente", "at": 12.32 },
+                   { "icon": "file-text", "label": "borradores", "at": 14.29 } ],
+        "badge": { "text": "tú revisas", "after": 3, "at": 15.84 } },
+      { "t": "flow", "start": 19.5, "end": 25.0, "layout": "chain",
+        "nodes": [ { "icon": "video", "label": "grabación", "at": 19.82 },
+                   { "icon": "captions", "label": "transcripción", "at": 20.6 },
+                   { "icon": "notebook-pen", "label": "resumen", "at": 22.26 },
+                   { "icon": "notion", "label": "tareas", "at": 24.33 } ] },
+      { "t": "flow", "start": 27.3, "end": 31.9, "layout": "fanout",
+        "end_node": { "icon": "video", "label": "1 vídeo", "at": 28.31 },
+        "hub": { "icon": "sparkles", "label": "IA", "at": 28.69 },
+        "nodes": [ { "icon": "file-text", "label": "guion", "at": 29.33 },
+                   { "icon": "captions", "label": "subtítulos", "at": 30.17 },
+                   { "icon": "send", "label": "post", "at": 31.22 } ] }
+    ],
+    "_flows": "un nodo por paso NOMBRADO: cada `at` es el segundo en que se dice esa palabra (scripts/words.py --find). Un diagrama no calla a los subtítulos.",
+
+    "cards": [
+      { "t": "stat", "start": 31.95, "end": 35.9, "kicker": "la cuenta",
+        "value": "×18", "label": "una tarde (≈3 h) → 10 min" }
+    ],
+    "_cards": "regla 1: la tarjeta NO repite la voz. La voz dice «diez minutos»; la tarjeta deduce la consecuencia (×18).",
+    "hide": [[31.95, 35.9]],
+    "_hide": "mientras hay una tarjeta de TEXTO, los subtítulos callan: una sola cosa que leer a la vez.",
+
+    "grandes": { "pregunta": { "start": 36.15, "top": 205, "icon": "message-circle-question",
+                               "pre": "¿y tú qué le", "word": "DELEGARÍAS?" } },
+
+    "sfx": [],
+    "_sfx": "vacío en la demo para que funcione sin kit. Con el kit en public/sfx: [{ \"s\": \"whoosh_in\", \"at\": 31.95, \"gain\": -17 }, { \"s\": \"tick\", \"at\": 7.48, \"gain\": -24 }, …]. Los niveles se MIDEN con scripts/mide_sfx.sh."
+  }
+}

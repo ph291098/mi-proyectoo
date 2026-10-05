@@ -1,0 +1,9 @@
+node_modules/
+out/
+final/
+qa/
+public/*.mp4
+public/*.mp3
+public/sfx/
+src/data/*.ts
+work/*.json
