@@ -1,0 +1,8 @@
+node_modules/
+work/
+public/*.mp4
+public/*.wav
+out/
+qa/
+.agents/
+.claude/skills/

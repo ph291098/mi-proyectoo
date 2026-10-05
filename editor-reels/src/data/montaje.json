@@ -1,0 +1,513 @@
+{
+ "video": "mi-video.mp4",
+ "durationInFrames": 452,
+ "segments": [
+  {
+   "from": 0.0,
+   "to": 3.2666666666666666,
+   "outStart": 0.0,
+   "fromF": 0,
+   "toF": 98,
+   "outF": 0
+  },
+  {
+   "from": 4.1,
+   "to": 6.3,
+   "outStart": 3.2666666666666666,
+   "fromF": 123,
+   "toF": 189,
+   "outF": 98
+  },
+  {
+   "from": 6.5,
+   "to": 8.333333333333334,
+   "outStart": 5.466666666666667,
+   "fromF": 195,
+   "toF": 250,
+   "outF": 164
+  },
+  {
+   "from": 10.1,
+   "to": 16.266666666666666,
+   "outStart": 7.3,
+   "fromF": 303,
+   "toF": 488,
+   "outF": 219
+  },
+  {
+   "from": 18.466666666666665,
+   "to": 18.833333333333332,
+   "outStart": 13.466666666666667,
+   "fromF": 554,
+   "toF": 565,
+   "outF": 404
+  },
+  {
+   "from": 19.2,
+   "to": 19.466666666666665,
+   "outStart": 13.833333333333334,
+   "fromF": 576,
+   "toF": 584,
+   "outF": 415
+  },
+  {
+   "from": 19.766666666666666,
+   "to": 20.733333333333334,
+   "outStart": 14.1,
+   "fromF": 593,
+   "toF": 622,
+   "outF": 423
+  }
+ ],
+ "words": [
+  {
+   "i": 0,
+   "text": "Te",
+   "start": 0.0,
+   "end": 0.16,
+   "src": 0.0
+  },
+  {
+   "i": 1,
+   "text": "estaba",
+   "start": 0.16,
+   "end": 0.3,
+   "src": 0.16
+  },
+  {
+   "i": 2,
+   "text": "mandando",
+   "start": 0.3,
+   "end": 0.92,
+   "src": 0.3
+  },
+  {
+   "i": 3,
+   "text": "un",
+   "start": 0.92,
+   "end": 1.38,
+   "src": 0.92
+  },
+  {
+   "i": 4,
+   "text": "videonote,",
+   "start": 1.38,
+   "end": 1.78,
+   "src": 1.38
+  },
+  {
+   "i": 5,
+   "text": "pero",
+   "start": 1.82,
+   "end": 2.0,
+   "src": 1.82
+  },
+  {
+   "i": 6,
+   "text": "no",
+   "start": 2.0,
+   "end": 2.12,
+   "src": 2.0
+  },
+  {
+   "i": 7,
+   "text": "quieres",
+   "start": 2.12,
+   "end": 2.32,
+   "src": 2.12
+  },
+  {
+   "i": 8,
+   "text": "salir.",
+   "start": 2.32,
+   "end": 2.66,
+   "src": 2.32
+  },
+  {
+   "i": 9,
+   "text": "Ahora,",
+   "start": 2.96,
+   "end": 3.16,
+   "src": 2.96
+  },
+  {
+   "i": 10,
+   "text": "tú",
+   "start": 3.327,
+   "end": 3.447,
+   "src": 4.16
+  },
+  {
+   "i": 11,
+   "text": "nunca",
+   "start": 3.447,
+   "end": 3.667,
+   "src": 4.28
+  },
+  {
+   "i": 12,
+   "text": "has",
+   "start": 3.667,
+   "end": 3.787,
+   "src": 4.5
+  },
+  {
+   "i": 13,
+   "text": "visto",
+   "start": 3.787,
+   "end": 4.007,
+   "src": 4.62
+  },
+  {
+   "i": 14,
+   "text": "tan",
+   "start": 4.007,
+   "end": 4.227,
+   "src": 4.84
+  },
+  {
+   "i": 15,
+   "text": "americano",
+   "start": 4.227,
+   "end": 4.727,
+   "src": 5.06
+  },
+  {
+   "i": 16,
+   "text": "como",
+   "start": 4.727,
+   "end": 4.927,
+   "src": 5.56
+  },
+  {
+   "i": 17,
+   "text": "el mío.",
+   "start": 4.927,
+   "end": 5.367,
+   "src": 5.76
+  },
+  {
+   "i": 18,
+   "text": "Ni",
+   "start": 5.527,
+   "end": 5.907,
+   "src": 6.56
+  },
+  {
+   "i": 19,
+   "text": "en",
+   "start": 5.907,
+   "end": 6.067,
+   "src": 6.94
+  },
+  {
+   "i": 20,
+   "text": "Bob",
+   "start": 6.067,
+   "end": 6.227,
+   "src": 7.1
+  },
+  {
+   "i": 21,
+   "text": "Jones",
+   "start": 6.227,
+   "end": 6.547,
+   "src": 7.26
+  },
+  {
+   "i": 22,
+   "text": "tú",
+   "start": 6.547,
+   "end": 6.667,
+   "src": 7.58
+  },
+  {
+   "i": 23,
+   "text": "has",
+   "start": 6.667,
+   "end": 6.767,
+   "src": 7.7
+  },
+  {
+   "i": 24,
+   "text": "visto",
+   "start": 6.767,
+   "end": 6.907,
+   "src": 7.8
+  },
+  {
+   "i": 25,
+   "text": "eso.",
+   "start": 6.907,
+   "end": 7.187,
+   "src": 7.94
+  },
+  {
+   "i": 26,
+   "text": "¿Y",
+   "start": 7.34,
+   "end": 7.74,
+   "src": 10.14
+  },
+  {
+   "i": 27,
+   "text": "dónde",
+   "start": 7.74,
+   "end": 8.06,
+   "src": 10.54
+  },
+  {
+   "i": 28,
+   "text": "son",
+   "start": 8.06,
+   "end": 8.28,
+   "src": 10.86
+  },
+  {
+   "i": 29,
+   "text": "tus",
+   "start": 8.28,
+   "end": 8.5,
+   "src": 11.08
+  },
+  {
+   "i": 30,
+   "text": "outfits?",
+   "start": 8.5,
+   "end": 8.76,
+   "src": 11.3
+  },
+  {
+   "i": 31,
+   "text": "Ah,",
+   "start": 8.9,
+   "end": 9.14,
+   "src": 11.7
+  },
+  {
+   "i": 32,
+   "text": "mi",
+   "start": 9.16,
+   "end": 9.24,
+   "src": 11.96
+  },
+  {
+   "i": 33,
+   "text": "outfit",
+   "start": 9.24,
+   "end": 9.42,
+   "src": 12.04
+  },
+  {
+   "i": 34,
+   "text": "es",
+   "start": 9.42,
+   "end": 9.62,
+   "src": 12.22
+  },
+  {
+   "i": 35,
+   "text": "de",
+   "start": 9.62,
+   "end": 9.82,
+   "src": 12.42
+  },
+  {
+   "i": 36,
+   "text": "Vineyard",
+   "start": 9.82,
+   "end": 10.16,
+   "src": 12.62
+  },
+  {
+   "i": 37,
+   "text": "Vines.",
+   "start": 10.16,
+   "end": 10.76,
+   "src": 12.96
+  },
+  {
+   "i": 38,
+   "text": "Vineyard",
+   "start": 11.0,
+   "end": 11.44,
+   "src": 13.8
+  },
+  {
+   "i": 39,
+   "text": "Vines,",
+   "start": 11.44,
+   "end": 12.04,
+   "src": 14.24
+  },
+  {
+   "i": 40,
+   "text": "los",
+   "start": 12.2,
+   "end": 12.32,
+   "src": 15.0
+  },
+  {
+   "i": 41,
+   "text": "shorts,",
+   "start": 12.32,
+   "end": 12.56,
+   "src": 15.12
+  },
+  {
+   "i": 42,
+   "text": "porque",
+   "start": 12.64,
+   "end": 12.76,
+   "src": 15.44
+  },
+  {
+   "i": 43,
+   "text": "yo",
+   "start": 12.76,
+   "end": 12.84,
+   "src": 15.56
+  },
+  {
+   "i": 44,
+   "text": "ya",
+   "start": 12.84,
+   "end": 12.94,
+   "src": 15.64
+  },
+  {
+   "i": 45,
+   "text": "lo",
+   "start": 12.94,
+   "end": 13.0,
+   "src": 15.74
+  },
+  {
+   "i": 46,
+   "text": "tenía.",
+   "start": 13.0,
+   "end": 13.36,
+   "src": 15.8
+  },
+  {
+   "i": 47,
+   "text": "Y",
+   "start": 13.5,
+   "end": 13.748,
+   "src": 18.5
+  },
+  {
+   "i": 48,
+   "text": "mi...",
+   "start": 13.872,
+   "end": 14.013,
+   "src": 19.239
+  },
+  {
+   "i": 49,
+   "text": "Hey,",
+   "start": 14.156,
+   "end": 14.473,
+   "src": 19.823
+  },
+  {
+   "i": 50,
+   "text": "dude.",
+   "start": 14.733,
+   "end": 14.973,
+   "src": 20.4
+  }
+ ],
+ "blocks": [
+  {
+   "from": 0,
+   "to": 4,
+   "key": [
+    4
+   ]
+  },
+  {
+   "from": 5,
+   "to": 8,
+   "key": [
+    8
+   ]
+  },
+  {
+   "from": 9,
+   "to": 17,
+   "key": [
+    15
+   ],
+   "serif": true
+  },
+  {
+   "from": 18,
+   "to": 25,
+   "key": [
+    25
+   ]
+  },
+  {
+   "from": 26,
+   "to": 30,
+   "key": [
+    30
+   ]
+  },
+  {
+   "from": 31,
+   "to": 37,
+   "key": [
+    36,
+    37
+   ]
+  },
+  {
+   "from": 38,
+   "to": 41,
+   "key": [
+    41
+   ]
+  },
+  {
+   "from": 42,
+   "to": 46,
+   "key": [
+    46
+   ]
+  },
+  {
+   "from": 47,
+   "to": 50,
+   "key": [
+    50
+   ]
+  }
+ ],
+ "escenas": [
+  {
+   "t": "tarjeta",
+   "expandAt": 2.72,
+   "label": "VIDEONOTE · NO SALE",
+   "start": 0.0,
+   "end": 3.267
+  },
+  {
+   "t": "tarjeta",
+   "expandAt": 12.2,
+   "label": "OUTFIT · VINEYARD VINES",
+   "start": 8.8,
+   "end": 12.6
+  }
+ ],
+ "handle": "@pablohernandez.ai",
+ "zooms": {
+  "escalas": [
+   1.0,
+   1.15
+  ],
+  "origen": "50% 38%",
+  "_": "alterna escala en cada salto de corte a cámara (referencia: 1.0 ↔ ≈1.2); 1.15 porque la fuente ya es 1080x1920 y más se nota"
+ }
+}

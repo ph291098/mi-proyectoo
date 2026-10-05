@@ -1,0 +1,36 @@
+{
+  "_doc": "Configuración del montaje de mi-video.mp4. Tiempos de escenas en segundos de la FUENTE; scripts/montaje.py los pasa a la salida.",
+  "video": "work/mi-video.mp4",
+  "video_public": "mi-video.mp4",
+  "audio": "work/mi/audio.wav",
+  "whisper": "work/mi/audio.json",
+  "max_silencio": 0.3,
+  "umbral_db": -35,
+  "pad_in": 0.05,
+  "pad_out": 0.1,
+  "handle": "@pablohernandez.ai",
+  "fix": {
+    "_porque": "errores del transcriptor confirmados por el usuario; el resto sigue al audio",
+    "16": "como", "17": "el mío.",
+    "36": "Vineyard", "37": "Vines.", "38": "Vineyard", "39": "Vines,"
+  },
+  "bloques": [
+    { "from": 0,  "to": 4,  "key": [4] },
+    { "from": 5,  "to": 8,  "key": [8] },
+    { "from": 9,  "to": 17, "key": [15], "serif": true, "_": "«americano» en serif cursiva, como «pasos» en la referencia" },
+    { "from": 18, "to": 25, "key": [25] },
+    { "from": 26, "to": 30, "key": [30] },
+    { "from": 31, "to": 37, "key": [36, 37] },
+    { "from": 38, "to": 41, "key": [41] },
+    { "from": 42, "to": 46, "key": [46] },
+    { "from": 47, "to": 50, "key": [50] }
+  ],
+  "escenas": [
+    { "t": "tarjeta", "srcStart": 0, "srcEnd": 3.3, "expandAt": 2.72, "label": "VIDEONOTE · NO SALE",
+      "_": "gancho: el plano dentro de una tarjeta sobre el lienzo que se expande a pantalla completa en «Ahora,» (referencia 2.4→3.0 s)" },
+    { "t": "tarjeta", "srcStart": 11.6, "srcEnd": 15.4, "expandAt": 15.0, "label": "OUTFIT · VINEYARD VINES",
+      "_": "la marca: el plano del espejo en tarjeta mientras la nombra; se expande en «los shorts»" }
+  ],
+  "zooms": { "escalas": [1.0, 1.15], "origen": "50% 38%",
+             "_": "alterna escala en cada salto de corte a cámara (referencia: 1.0 ↔ ≈1.2); 1.15 porque la fuente ya es 1080x1920 y más se nota" }
+}
