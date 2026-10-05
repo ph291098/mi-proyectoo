@@ -4,3 +4,8 @@ final/
 preview/
 .tmp-remotion/
 .DS_Store
+
+# fuentes con licencia de escritorio (p. ej. Coolvetica): nunca al repo
+public/fonts/*.otf
+public/fonts/*.ttf
+public/fonts/*.woff*

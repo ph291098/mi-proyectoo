@@ -1,0 +1,4 @@
+
+# fuentes con licencia de escritorio: nunca al repo
+*.otf
+**/Coolvetica*

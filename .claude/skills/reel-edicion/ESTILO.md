@@ -24,9 +24,13 @@ cuando la plantilla pinta un panel oscuro, lo pinta en tinta violeta.
 
 ## Tipografía
 
-- **Coolvetica** para todo lo que se lee. No está en Google Fonts: `aplica_perfil.py` la
-  carga desde `fuente.archivo` (pon ahí la ruta de tu `.otf`/`.ttf`). Si no la encuentra,
-  usa **Archivo** (`fuente.respaldo`) y avisa.
+- **Coolvetica** (Typodermic) para todo lo que se lee. No está en Google Fonts:
+  `aplica_perfil.py` la carga desde `fuente.archivo`, que por defecto es
+  `~/Library/Fonts/Coolvetica Rg.otf` (lo que queda al instalarla con doble clic en el Mac).
+  Si no la encuentra, usa **Archivo** (`fuente.respaldo`) y avisa.
+  **Licencia de escritorio**: se usa en tu ordenador y se publican los vídeos renderizados,
+  pero el `.otf` no se sube nunca a un repo, a un servidor ni a la nube (EULA §4.1 y §4.4).
+  Por eso la skill guarda solo la ruta y los `.gitignore` bloquean las fuentes.
 - **JetBrains Mono** para prompts, datos y código.
 - Tamaños sobre 1080×1920: gancho o título 96–120 px · subtítulo 64–72 px · etiqueta o
   lower third 36–44 px.

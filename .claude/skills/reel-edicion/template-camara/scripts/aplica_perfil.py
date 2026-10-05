@@ -76,10 +76,10 @@ def local_font(fuente):
         print(f"  aviso: no encuentro {src}; uso {fuente.get('respaldo', 'Inter')} de Google Fonts. "
               "Pon la ruta correcta en fuente.archivo y vuelve a correr este script.")
         return None
-    dst = RAIZ / "public" / "fonts" / src.name
+    dst = RAIZ / "public" / "fonts" / re.sub(r"[^A-Za-z0-9._-]+", "-", src.name)   # «Coolvetica Rg.otf» -> «Coolvetica-Rg.otf»
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(src, dst)
-    return fuente.get("principal", src.stem), f"fonts/{src.name}"
+    return fuente.get("principal", src.stem), f"fonts/{dst.name}"
 
 
 def ts(v):
