@@ -1,0 +1,44 @@
+{
+  "_origen": "Moodboard de video de @pablohernandez.ai (claude.ai/artifact/Mz2y1wfY1rrbkaeZWfqJQU). Reglas completas en ESTILO.md.",
+  "handle": "@pablohernandez.ai",
+  "idioma": "es",
+  "plataformas": ["reels", "tiktok", "shorts"],
+  "colores": {
+    "accent": "#6A4DF0",
+    "highlight": "#C9B8FF",
+    "ink": "#1E1433",
+    "text": "#FFFFFF",
+    "soft": "#EFEAFF",
+    "line": "#8C7FB8",
+    "ok": "#4ADE80",
+    "alert": "#FB7185",
+    "paper": "#FFFFFF",
+    "onPaper": "#1E1433"
+  },
+  "fuente": {
+    "principal": "Coolvetica",
+    "archivo": "~/Library/Fonts/Coolvetica.otf",
+    "respaldo": "Archivo",
+    "mono": "JetBrains Mono"
+  },
+  "subtitulos": { "estilo": "bloque", "upper": false, "size": 68, "maxWords": 4, "band": false, "byBrand": false },
+  "plano": { "fuente_habitual": "camara", "espacio_libre": "izquierda" },
+  "audio": { "biblioteca": "~/ReelKit", "efectos": true, "musica": true, "micro": "cercano" },
+  "cta": { "tipo": "seguir", "texto": "guárdalo para después" },
+  "marcas_frecuentes": [],
+  "notas": {
+    "tono": "claro, cercano y didáctico: IA explicada para personas, tech con calidez, premium accesible; como una clase bien dada en un estudio luminoso",
+    "evitar": [
+      "fondos negros",
+      "más de 2 colores de acento",
+      "emojis (ni animados ni en tarjetas)",
+      "neón gamer, glitch, robots y cerebros brillantes de stock",
+      "transiciones de plantilla: cubos, destellos, glitch",
+      "música con letra bajo la voz",
+      "grabación de pantalla cruda a pantalla completa (siempre enmarcada)",
+      "violeta eléctrico en bloques grandes",
+      "más de una acción en el CTA",
+      "mayúsculas salvo en nombres propios"
+    ]
+  }
+}

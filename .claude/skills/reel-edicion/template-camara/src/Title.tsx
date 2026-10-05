@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { COLORS, TITLE_BAND, SAFE } from "./theme";
+import { COLORS, TITLE_BAND, SAFE, INK_RGB } from "./theme";
 import { Logo, LOGO_COLOR, LOGO_NAME, type LogoId } from "./Logos";
 import { at, outAt, mix, SPR } from "./anim";
 import { fontFamily } from "./fonts";
@@ -54,7 +54,7 @@ export const Title: React.FC<{ title: TitleData }> = ({ title }) => {
     }}>
       <div style={{
         position: "absolute", inset: "-6px -26px",
-        background: `rgba(10,8,6,${0.88 * p})`, backdropFilter: `blur(${16 * p}px)`,
+        background: `rgba(${INK_RGB},${0.88 * p})`, backdropFilter: `blur(${16 * p}px)`,
         border: `1px solid rgba(140,130,114,${0.42 * p})`, borderRadius: 26,
         boxShadow: `0 26px 70px -22px rgba(0,0,0,${0.85 * p})`,
       }} />

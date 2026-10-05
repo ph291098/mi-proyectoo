@@ -16,8 +16,11 @@ export const COLORS = {
   alert:      "#FB7185",   // tachados, errores, sellos en rojo
   ink:        "#0B0F14",   // fondo de paneles y lienzo
   line:       "#7C8794",   // líneas finas, handle, etiquetas apagadas
+  paper:      "#FFFFFF",   // caja clara (subtítulos «bloque»)
+  onPaper:    "#0B0F14",   // texto sobre la caja clara
 } as const;
 export const CAPTIONS = {
+  estilo: "sombra",
   upper: true,
   size: 80,
   maxWords: 4,
@@ -27,6 +30,11 @@ export const CAPTIONS = {
 export const RAIL = { x: 70, w: 430 } as const;   // columna libre del plano
 export const TOPIC_ALIGN_DEFAULT: "chip" | "inline" | "off" = "chip";
 // ── FIN PERFIL ──
+
+// Tinta de los paneles (fondos translúcidos, scrims) en «r,g,b» para usar en rgba(): sale de
+// COLORS.ink, así que con el perfil neutro es casi negro y con uno de marca, su tinta.
+const hex = COLORS.ink.replace("#", "");
+export const INK_RGB = [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(",");
 
 // ── Zonas protegidas ──
 // Unión de TikTok y Reels en orgánico, medida sobre las dos plataformas:

@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { COLORS, TOPIC_Y, RAIL } from "./theme";
+import { COLORS, TOPIC_Y, RAIL, INK_RGB } from "./theme";
 import { Logo, LOGO_COLOR, LOGO_NAME, type LogoId } from "./Logos";
 import { at, outAt, mix, SPR, aparta } from "./anim";
 import { fontFamily } from "./fonts";
@@ -37,7 +37,7 @@ export const TopicChip: React.FC<{ topics: Topic[]; mute?: Array<[number, number
       <div style={{
         display: "flex", alignItems: "center", gap: 15,
         padding: "13px 26px 13px 17px", borderRadius: 999,
-        background: "rgba(10,8,6,0.72)", backdropFilter: "blur(10px)",
+        background: `rgba(${INK_RGB},0.72)`, backdropFilter: "blur(10px)",
         border: `1px solid ${accent}66`,
         boxShadow: `0 12px 36px -14px rgba(0,0,0,0.85), 0 0 26px -12px ${accent}`,
       }}>

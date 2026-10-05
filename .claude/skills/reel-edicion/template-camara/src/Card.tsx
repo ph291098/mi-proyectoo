@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, interpolate } from "remotion";
-import { COLORS, CARD_BAND, SAFE } from "./theme";
+import { COLORS, CARD_BAND, SAFE, INK_RGB } from "./theme";
 import { Logo, LOGO_COLOR, type LogoId } from "./Logos";
 import { at, outAt, mix, SPR, cuenta } from "./anim";
 import { ICONS } from "./Icons";
@@ -49,7 +49,7 @@ export const Shell: React.FC<{ p: number; inP: number; outP: number; cy?: number
       top: cy - h / 2, minHeight: h,
       display: "flex", flexDirection: "column", justifyContent: "center",
       padding: "34px 40px", boxSizing: "border-box", fontFamily,
-      background: `rgba(10,8,6,${0.88 * p})`,
+      background: `rgba(${INK_RGB},${0.88 * p})`,
       backdropFilter: `blur(${12 * p}px)`,
       border: `1px solid rgba(140,130,114,${0.42 * p})`,
       borderRadius: 22,

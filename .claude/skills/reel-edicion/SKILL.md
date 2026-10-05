@@ -1,6 +1,6 @@
 ---
 name: reel-edicion
-description: Monta y renderiza reels/TikToks/Shorts verticales (1080x1920) con Remotion a partir de una grabación a cámara, un split de CapCut, una charla o una grabación de pantalla. Subtítulos con resalte palabra a palabra, tarjetas de refuerzo, diagramas con iconos que se dibujan, B-roll a pantalla completa, logos de marca reales, grafismo de suspenso (sellos, cronómetro, censura), música y efectos CC0, difuminado de datos sensibles verificado con OCR, y export a -14 LUFS y color bt709. El estilo (colores, tipografía, subtítulos, CTA) sale de un perfil que se crea con un cuestionario la primera vez. Úsala cuando el usuario quiera "montar el reel", "editar este vídeo para TikTok/Instagram", "ponerle subtítulos", "renderizar el reel", "configurar mi estilo de edición" o retocar una composición existente.
+description: Monta y renderiza reels/TikToks/Shorts verticales (1080x1920) con Remotion a partir de una grabación a cámara, un split de CapCut, una charla o una grabación de pantalla. Subtítulos con resalte palabra a palabra, tarjetas de refuerzo, diagramas con iconos que se dibujan, B-roll a pantalla completa, logos de marca reales, grafismo de suspenso (sellos, cronómetro, censura), música y efectos CC0, difuminado de datos sensibles verificado con OCR, y export a -14 LUFS y color bt709. Viene adaptada a la marca de @pablohernandez.ai (perfil.json + ESTILO.md: lavanda y tinta violeta, Coolvetica, subtítulos en bloque blanco); un cuestionario permite cambiar de estilo. Úsala cuando el usuario quiera "montar el reel", "editar este vídeo para TikTok/Instagram", "ponerle subtítulos", "renderizar el reel", "configurar mi estilo de edición" o retocar una composición existente.
 user-invocable: true
 allowed-tools:
   - Bash
@@ -14,14 +14,28 @@ allowed-tools:
 
 ## Paso 0 — el perfil (siempre lo primero)
 
+`SKILL_DIR` es la carpeta de esta skill: `.claude/skills/reel-edicion` en la raíz del
+repo, o `~/.claude/skills/reel-edicion` si está instalada para el usuario.
+
 ```bash
+SKILL_DIR=$(git rev-parse --show-toplevel 2>/dev/null)/.claude/skills/reel-edicion
+[ -d "$SKILL_DIR" ] || SKILL_DIR=~/.claude/skills/reel-edicion
 cat ~/.config/reel-edicion/perfil.json 2>/dev/null || echo "SIN PERFIL"
 ```
 
-- **Sin perfil** → haz el cuestionario de `CUESTIONARIO.md` (en esta misma carpeta)
-  antes de tocar ningún vídeo, escribe `~/.config/reel-edicion/perfil.json` y enseña el
-  resumen. Si el usuario tiene prisa, ofrece los valores neutros de `perfil.example.json`
-  y el cuestionario después.
+**Esta skill ya viene adaptada a @pablohernandez.ai.** `perfil.json` (en esta carpeta) es
+su perfil de marca, sacado de su moodboard de vídeo, y `ESTILO.md` recoge el resto de su
+sistema visual: subtítulos A/B/C, overlays, ritmo, color, audio y portadas. **Lee
+`ESTILO.md` antes de montar nada**: sus reglas valen tanto como las de abajo.
+
+- **Sin perfil** → no hagas el cuestionario: instala el de la marca y enseña el resumen.
+  ```bash
+  mkdir -p ~/.config/reel-edicion && cp "$SKILL_DIR/perfil.json" ~/.config/reel-edicion/perfil.json
+  ```
+  Comprueba con el usuario lo que el moodboard no dice: la ruta de su Coolvetica
+  (`fuente.archivo`), su micro (`audio.micro`) y si en este vídeo la acción del CTA es
+  guardar, comentar o seguir. El cuestionario de `CUESTIONARIO.md` queda para cuando el
+  usuario pida un estilo distinto.
 - **Con perfil** → léelo y respétalo en todo: `notas.tono` decide cómo se redactan
   kickers y tarjetas; `notas.evitar` son reglas tan firmes como las de abajo; `cta.tipo`
   decide el cierre; `plano.fuente_habitual` la plantilla por defecto.
@@ -54,7 +68,7 @@ La demo trae un guion ficticio con tiempos sintéticos y un fondo degradado. Sir
 ver el perfil aplicado antes del primer vídeo real:
 
 ```bash
-cp -R ~/.claude/skills/reel-edicion/template-camara ~/reels/demo && cd ~/reels/demo
+cp -R "$SKILL_DIR/template-camara" ~/reels/demo && cd ~/reels/demo
 npm install
 python3 scripts/aplica_perfil.py
 python3 scripts/demo_words.py
@@ -217,8 +231,14 @@ Por eso:
 - Lo único que sigue a la voz es el **resalte**. Así se puede leer por delante, que es lo
   que retiene.
 
-`CAPTIONS` en el perfil: `upper`, `size` (80 por defecto), `maxWords` (4), `band` (píldora
-o texto suelto con trazo y sombra), `byBrand`. `MERGE_LIMIT = 5` para una banda de 720 px:
+`CAPTIONS` en el perfil: `estilo`, `upper`, `size` (80 por defecto), `maxWords` (4), `band`,
+`byBrand`. `estilo` puede ser `"sombra"` (texto suelto con trazo y sombra), `"pildora"` (banda
+oscura, igual que `band: true`), `"bloque"` (caja `COLORS.paper` con el texto en
+`COLORS.onPaper` y la palabra que suena en una pastilla del color de resalte: el estilo A de
+`ESTILO.md`) o `"palabra"` (texto claro con sombra de tinta y la palabra activa coloreada: el
+estilo B). En `"bloque"` y `"palabra"` la página entra con un pop corto, de escala 90 a 100 %.
+Los paneles y los scrims usan la tinta del perfil (`INK_RGB`, que sale de `COLORS.ink`) y no
+un negro fijo. `MERGE_LIMIT = 5` para una banda de 720 px:
 con 7 palabras a 84 px se van a tres líneas y chocan con el handle.
 
 Muelles: `damping 200` con `stiffness 260` está **sobre**amortiguado (ζ ≈ 9.8) y entra
@@ -667,7 +687,7 @@ palabras comunes que una corrección global pisaría. `""` borra el token. `gen_
 ## Flujo de un reel real
 
 ```bash
-cp -R ~/.claude/skills/reel-edicion/template-camara ~/reels/mi-reel && cd ~/reels/mi-reel
+cp -R "$SKILL_DIR/template-camara" ~/reels/mi-reel && cd ~/reels/mi-reel
 npm install                                  # una vez por proyecto
 python3 scripts/aplica_perfil.py             # tu estilo en theme.ts + fonts.ts
 python3 scripts/logos_gen.py --add notion    # marcas que se NOMBRAN en este vídeo
@@ -727,7 +747,9 @@ la misma caja abajo, faltan eventos visuales. **Se arregla con B-roll de verdad,
 tarjetas**; si no hay material, dilo en vez de rellenar. Excepción: en una demo de
 pantalla ilegible en el móvil, las `escenas` SON el B-roll.
 
-Antes de entregar, repasa el perfil: ¿algo de `notas.evitar` se coló?
+Antes de entregar, repasa el perfil: ¿se coló algo de `notas.evitar`? Repasa también
+`ESTILO.md`: una sola palabra clave en lavanda por frase, la pantalla siempre enmarcada,
+un cambio visual cada 2–4 s y una sola acción en el CTA.
 
 ---
 
@@ -736,6 +758,7 @@ Antes de entregar, repasa el perfil: ¿algo de `notas.evitar` se coló?
 ```
 reel-edicion/
 ├── SKILL.md · CUESTIONARIO.md · perfil.example.json
+├── perfil.json · ESTILO.md          ← marca @pablohernandez.ai (perfil por defecto + guía de estilo)
 ├── template-camara/                 ← vertical a cuadro completo (casi siempre)
 │   ├── cortes.example.json          demo comentada
 │   ├── src/

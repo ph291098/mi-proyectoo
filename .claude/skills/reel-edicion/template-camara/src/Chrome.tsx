@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { COLORS, KICKER_Y, HANDLE_Y, RAIL, WIDTH, DZ } from "./theme";
+import { COLORS, KICKER_Y, HANDLE_Y, RAIL, WIDTH, DZ, INK_RGB } from "./theme";
 import { at, outAt, mix, SPR, aparta } from "./anim";
 import { Logo, LOGO_COLOR, type LogoId } from "./Logos";
 import { fontFamily } from "./fonts";
@@ -55,7 +55,7 @@ export const KeywordChip: React.FC<{ kw: Keyword }> = ({ kw }) => {
       <div style={{
         display: "inline-flex", alignItems: "center", gap: 15,
         padding: "14px 28px", borderRadius: 999,
-        background: "rgba(10,8,6,0.82)", backdropFilter: "blur(10px)",
+        background: `rgba(${INK_RGB},0.82)`, backdropFilter: "blur(10px)",
         border: `1px solid rgba(233,185,73,${glow})`,
         boxShadow: `0 14px 44px -16px rgba(0,0,0,0.9), 0 0 ${glow * 42}px -10px ${COLORS.accent}`,
       }}>

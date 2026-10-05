@@ -14,8 +14,10 @@ def carga():
     return {}
 
 def ruta(clave, defecto):
-    """Ruta de la biblioteca de audio: perfil.audio.<clave> o el valor por defecto."""
-    v = carga().get("audio", {}).get(clave) or defecto
+    """Ruta de la biblioteca de audio: perfil.audio.<clave> o el valor por defecto.
+    Solo cuenta si es texto: `audio.musica`/`audio.efectos` del cuestionario son booleanos."""
+    v = carga().get("audio", {}).get(clave)
+    v = v if isinstance(v, str) and v else defecto
     return pathlib.Path(os.path.expanduser(v))
 
 BIBLIOTECA = ruta("biblioteca", "~/ReelKit")

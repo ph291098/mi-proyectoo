@@ -1,6 +1,6 @@
 import React from "react";
 import { OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig, interpolate } from "remotion";
-import { WIDTH, HEIGHT, COLORS, SPLIT_Y } from "./theme";
+import { WIDTH, HEIGHT, COLORS, SPLIT_Y, INK_RGB } from "./theme";
 import { at, mix, SPR } from "./anim";
 
 /** Un tramo de encuadre. La fuente ya es vertical, así que aquí no se recorta a
@@ -85,8 +85,8 @@ export const Scrim: React.FC<{ split?: Array<[number, number]> }> = ({ split = [
   const top = (0.30 * (1 - k)).toFixed(3), j = (0.34 * k).toFixed(3);
   return (
     <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background:
-      `linear-gradient(to bottom, rgba(10,8,6,${top}) 0%, rgba(10,8,6,0) 20%, rgba(10,8,6,0) ${(y - 0.2).toFixed(1)}%,`
-      + ` rgba(10,8,6,${j}) ${(y + 0.6).toFixed(1)}%, rgba(10,8,6,${j}) ${(y + 6).toFixed(1)}%, rgba(10,8,6,0) ${(y + 10).toFixed(1)}%,`
-      + " rgba(10,8,6,0) 60%, rgba(10,8,6,0.30) 78%, rgba(10,8,6,0.42) 100%)" }} />
+      `linear-gradient(to bottom, rgba(${INK_RGB},${top}) 0%, rgba(${INK_RGB},0) 20%, rgba(${INK_RGB},0) ${(y - 0.2).toFixed(1)}%,`
+      + ` rgba(${INK_RGB},${j}) ${(y + 0.6).toFixed(1)}%, rgba(${INK_RGB},${j}) ${(y + 6).toFixed(1)}%, rgba(${INK_RGB},0) ${(y + 10).toFixed(1)}%,`
+      + ` rgba(${INK_RGB},0) 60%, rgba(${INK_RGB},0.30) 78%, rgba(${INK_RGB},0.42) 100%)` }} />
   );
 };

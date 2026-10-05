@@ -1,6 +1,6 @@
 import React from "react";
 import { Img, OffthreadVideo, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { COLORS, SAFE } from "./theme";
+import { COLORS, SAFE, INK_RGB } from "./theme";
 import { at, outAt, mix, SPR } from "./anim";
 import { Logo, type LogoId } from "./Logos";
 import { fontFamily } from "./fonts";
@@ -65,7 +65,7 @@ const Credit: React.FC<{ b: BrollData; top?: number; bottom?: number; right: num
   return (
     <div style={{
       position: "absolute", right, top, bottom, display: "flex", alignItems: "center", gap: 8,
-      padding: "6px 12px", borderRadius: 999, background: "rgba(10,8,6,0.78)",
+      padding: "6px 12px", borderRadius: 999, background: `rgba(${INK_RGB},0.78)`,
       color: COLORS.soft, fontFamily, fontWeight: 700, fontSize: 21, letterSpacing: "0.02em",
       opacity: at(frame, fps, b.start + 0.2, SPR.soft),
     }}>

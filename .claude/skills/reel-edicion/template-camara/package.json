@@ -10,6 +10,7 @@
   "dependencies": {
     "@remotion/captions": "4.0.503",
     "@remotion/cli": "4.0.503",
+    "@remotion/fonts": "4.0.503",
     "@remotion/google-fonts": "4.0.503",
     "@remotion/media-utils": "4.0.503",
     "@remotion/zod-types": "4.0.503",

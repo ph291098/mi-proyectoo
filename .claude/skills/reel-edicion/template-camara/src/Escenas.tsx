@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, interpolate } from "remotion";
-import { COLORS, CARD_BAND, SAFE } from "./theme";
+import { COLORS, CARD_BAND, SAFE, INK_RGB } from "./theme";
 import { Logo, LOGO_COLOR, LOGO_NAME, type LogoId } from "./Logos";
 import { ICONS } from "./Icons";
 import { at, outAt, mix, SPR } from "./anim";
@@ -118,7 +118,7 @@ export const Pin: React.FC<{ d: PinData }> = ({ d }) => {
         position: "absolute", left: d.lx, top: d.ly, transform: `translate(-12%, -50%) scale(${mix(cp, 0.4, 1)})`,
         transformOrigin: "left center", opacity: cp, fontFamily,
         display: "flex", alignItems: "center", gap: 16, padding: "14px 26px 14px 16px", borderRadius: 999,
-        background: "rgba(10,8,6,0.9)", border: `2px solid ${acc}`, boxShadow: `0 16px 40px -14px #000, 0 0 30px -10px ${acc}`,
+        background: `rgba(${INK_RGB},0.9)`, border: `2px solid ${acc}`, boxShadow: `0 16px 40px -14px #000, 0 0 30px -10px ${acc}`,
       }}>
         <div style={{ width: 52, height: 52, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Ico id={d.icon} size={LOGOS.has(d.icon) ? 48 : 36} color={acc} />
@@ -176,7 +176,7 @@ export const Crono: React.FC<{ d: CronoData }> = ({ d }) => {
       position: "absolute", left: d.x ?? 70, top: d.y ?? 196, fontFamily, opacity: p * out,
       transform: `translateX(${mix(p, -60, 0)}px) scale(${done ? mix(dp, 1.15, 1) : 1})`, transformOrigin: "left center",
       display: "flex", alignItems: "center", gap: 16, padding: "10px 24px 10px 12px", borderRadius: 20,
-      background: "rgba(10,8,6,0.9)", border: `2px solid ${acc}${done ? "" : "99"}`,
+      background: `rgba(${INK_RGB},0.9)`, border: `2px solid ${acc}${done ? "" : "99"}`,
       boxShadow: `0 14px 40px -14px #000, 0 0 ${done ? 34 : 20 * beat}px -8px ${acc}`,
     }}>
       <svg width={66} height={66} viewBox="0 0 66 66">
@@ -209,7 +209,7 @@ const Panel: React.FC<{ start: number; end: number; cy?: number; h?: number; ton
   return (
     <div style={{
       position: "absolute", left: SAFE.x0, width: SAFE.x1 - SAFE.x0, top: cy - h / 2, height: h, boxSizing: "border-box",
-      padding: "30px 38px", borderRadius: 24, background: `rgba(10,8,6,${0.9 * Math.min(inP, outP)})`, backdropFilter: "blur(12px)",
+      padding: "30px 38px", borderRadius: 24, background: `rgba(${INK_RGB},${0.9 * Math.min(inP, outP)})`, backdropFilter: "blur(12px)",
       border: `1.5px solid ${tone}`, boxShadow: "0 30px 80px -24px rgba(0,0,0,0.9)", fontFamily,
       clipPath: `inset(0 ${(1 - inP) * 100}% 0 0 round 24px)`,
       transform: `translateY(${mix(outP, 26, 0)}px)`, filter: outP < 1 ? `blur(${mix(outP, 8, 0)}px)` : "none", opacity: outP,
@@ -426,7 +426,7 @@ export const Tuberia: React.FC<{ d: TuberiaData }> = ({ d }) => {
   const sp = W / N;
   return (
     <div style={{ position: "absolute", left: SAFE.x0, top: cy - 90, width: W, height: 180, fontFamily, opacity: out }}>
-      <div style={{ position: "absolute", inset: 0, borderRadius: 28, background: `rgba(10,8,6,${0.78 * bp})`, backdropFilter: "blur(10px)",
+      <div style={{ position: "absolute", inset: 0, borderRadius: 28, background: `rgba(${INK_RGB},${0.78 * bp})`, backdropFilter: "blur(10px)",
                     border: "1px solid rgba(140,130,114,0.35)", clipPath: `inset(0 ${(1 - bp) * 100}% 0 0 round 28px)` }} />
       <svg width={W} height={180} style={{ position: "absolute", inset: 0 }}>
         {d.nodes.slice(0, -1).map((_, i) => {
@@ -546,7 +546,7 @@ export const Memoria: React.FC<{ d: MemoriaData }> = ({ d }) => {
   return (
     <div style={{
       position: "absolute", left: x, top: y, width: w, boxSizing: "border-box", padding: "14px 20px 16px",
-      borderRadius: 20, background: "rgba(10,8,6,0.9)", backdropFilter: "blur(10px)", fontFamily,
+      borderRadius: 20, background: `rgba(${INK_RGB},0.9)`, backdropFilter: "blur(10px)", fontFamily,
       border: `2px solid ${acc}${load ? "" : "88"}`, boxShadow: `0 14px 40px -14px #000, 0 0 ${16 + 40 * glow}px -8px ${acc}`,
       opacity: inP * out, transform: `translateX(${mix(inP, 60, 0)}px) scale(${1 + 0.06 * glow})`, transformOrigin: "right center",
     }}>

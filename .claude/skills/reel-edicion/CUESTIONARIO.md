@@ -30,7 +30,7 @@ nuevo lo aplica con `python3 scripts/aplica_perfil.py`.
 |---|---|---|
 | 5 | ¿Qué paleta? (con `preview` de los hex) | **Eléctrico** acento `#3DD6F5` · **Coral** acento `#FF5A36`, resalte `#FFD23F` · **Lima** acento `#C6F432` · **Violeta** acento `#A78BFA`, resalte `#F0ABFC` · Otro: su hex de marca → `colores` |
 | 6 | ¿Qué tipografía? | Inter (neutra, técnica) · Montserrat (clásica de redes) · Poppins (redonda, amable) · Plus Jakarta Sans (moderna) · Otra Google Font → `fuente.principal` |
-| 7 | ¿Cómo quieres los subtítulos? | MAYÚSCULAS sueltas con sombra · Frase normal sueltas con sombra · MAYÚSCULAS en píldora oscura · Frase normal en píldora → `subtitulos.upper` / `subtitulos.band` |
+| 7 | ¿Cómo quieres los subtítulos? | MAYÚSCULAS sueltas con sombra · Frase normal sueltas con sombra · MAYÚSCULAS en píldora oscura · Frase normal en píldora · Bloque blanco con la palabra activa en pastilla → `subtitulos.upper` / `subtitulos.estilo` (`sombra`/`pildora`/`bloque`/`palabra`) |
 | 8 | Cuando no hablas de nada concreto, ¿de qué color va la palabra que suena? ¿Y cuando nombras una marca? | Siempre mi color de resalte · Color de la marca que nombro (Notion, WhatsApp…) → `subtitulos.byBrand` |
 
 Paletas completas (lo que se escribe en `colores`):

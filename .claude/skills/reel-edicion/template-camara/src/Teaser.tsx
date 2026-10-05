@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, interpolate } from "remotion";
-import { COLORS, CARD_BAND, SAFE } from "./theme";
+import { COLORS, CARD_BAND, SAFE, INK_RGB } from "./theme";
 import { at, outAt, mix, SPR } from "./anim";
 import { fontFamily } from "./fonts";
 
@@ -48,7 +48,7 @@ export const Teaser: React.FC<{ data: TeaserData }> = ({ data }) => {
         top: cy - alto / 2, minHeight: alto,
         padding: "26px 40px", boxSizing: "border-box", fontFamily,
         display: "flex", flexDirection: "column", justifyContent: "center",
-        background: `rgba(10,8,6,${0.86 * p})`,
+        background: `rgba(${INK_RGB},${0.86 * p})`,
         backdropFilter: `blur(${12 * p}px)`,
         border: `1px solid rgba(140,130,114,${0.42 * p})`,
         borderRadius: 22,

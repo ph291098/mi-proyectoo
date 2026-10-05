@@ -6,14 +6,16 @@
 
 Qué toca, y nada más:
   - src/theme.ts  → el bloque entre «PERFIL» y «FIN PERFIL» (colores, subtítulos, raíl)
-  - src/fonts.ts  → la tipografía (Google Fonts vía @remotion/google-fonts)
+  - src/fonts.ts  → la tipografía (Google Fonts vía @remotion/google-fonts; si el perfil
+                    trae fuente.archivo, esa fuente local vía @remotion/fonts y la de
+                    Google como respaldo)
   - perfil.json   → copia en el proyecto, para que el proyecto se renderice igual
                     aunque cambies tu perfil más adelante
 
 La geometría fina (bandas, CAPTION_CY, SPLIT_Y…) NO sale del perfil: depende de cada
 grabación y se mide (SKILL.md → «Cómo encontrar el espacio muerto»).
 """
-import argparse, json, pathlib, re, subprocess, sys
+import argparse, json, os, pathlib, re, shutil, subprocess, sys
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "scripts"))
@@ -21,6 +23,7 @@ sys.path.insert(0, str(RAIZ / "scripts"))
 DEF_COLORES = {
     "text": "#FFFFFF", "soft": "#D6DCE5", "accent": "#3DD6F5", "highlight": "#3DD6F5",
     "ok": "#4ADE80", "alert": "#FB7185", "ink": "#0B0F14", "line": "#7C8794",
+    "paper": "#FFFFFF", "onPaper": "#0B0F14",
 }
 NOTAS = {
     "text": "texto principal de paneles y rótulos", "soft": "texto secundario",
@@ -28,8 +31,11 @@ NOTAS = {
     "highlight": "resalte de la palabra activa del subtítulo",
     "ok": "checks, «hecho», sellos en verde", "alert": "tachados, errores, sellos en rojo",
     "ink": "fondo de paneles y lienzo", "line": "líneas finas, handle, etiquetas apagadas",
+    "paper": "caja clara (subtítulos «bloque»)", "onPaper": "texto sobre la caja clara",
 }
-DEF_SUBS = {"upper": True, "size": 80, "maxWords": 4, "band": False, "byBrand": True}
+# estilo: "sombra" (texto suelto con trazo) · "pildora" (banda oscura) ·
+#         "bloque" (caja clara, palabra activa en pastilla) · "palabra" (texto claro, sombra tinta)
+DEF_SUBS = {"estilo": "sombra", "upper": True, "size": 80, "maxWords": 4, "band": False, "byBrand": True}
 RAILES = {   # dónde queda la zona libre del plano → columna del kicker, secciones y chips
     "izquierda": {"x": 70, "w": 430},
     "derecha":   {"x": 470, "w": 430},
@@ -56,6 +62,24 @@ def pesos(mod, quiero):
     if len(ok) < len(quiero):
         print(f"  aviso: {mod} no tiene los pesos {sorted(set(quiero) - set(ok))}; el navegador los simulará")
     return ok or hay[-1:]
+
+
+def local_font(fuente):
+    """fuente.archivo (una .otf/.ttf/.woff2 que no está en Google Fonts, p.ej. Coolvetica)
+    -> se copia a public/fonts/ y se carga con @remotion/fonts. Sin archivo, o si no existe,
+    se usa fuente.respaldo de Google Fonts."""
+    ruta = fuente.get("archivo")
+    if not ruta:
+        return None
+    src = pathlib.Path(os.path.expanduser(ruta))
+    if not src.exists():
+        print(f"  aviso: no encuentro {src}; uso {fuente.get('respaldo', 'Inter')} de Google Fonts. "
+              "Pon la ruta correcta en fuente.archivo y vuelve a correr este script.")
+        return None
+    dst = RAIZ / "public" / "fonts" / src.name
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(src, dst)
+    return fuente.get("principal", src.stem), f"fonts/{src.name}"
 
 
 def ts(v):
@@ -98,23 +122,37 @@ def main():
     th.write_text(s2)
 
     fuente = perfil.get("fuente", {})
-    fam, mono = modulo(fuente.get("principal", "Inter")), modulo(fuente.get("mono", "JetBrains Mono"))
+    local = local_font(fuente)
+    principal = fuente.get("respaldo", "Inter") if local or fuente.get("archivo") else fuente.get("principal", "Inter")
+    fam, mono = modulo(principal), modulo(fuente.get("mono", "JetBrains Mono"))
     wf, wm = pesos(fam, ["600", "700", "800"]), pesos(mono, ["500", "700"])
-    (RAIZ / "src" / "fonts.ts").write_text(f'''// GENERADO por scripts/aplica_perfil.py — cambia la fuente en tu perfil, no aquí.
-import {{ loadFont }} from "@remotion/google-fonts/{fam}";
-import {{ loadFont as loadMono }} from "@remotion/google-fonts/{mono}";
-
-export const {{ fontFamily }} = loadFont("normal", {{
+    google = f'''export const {{ fontFamily }} = loadFont("normal", {{
+  weights: {json.dumps(wf)}, subsets: ["latin", "latin-ext"], ignoreTooManyRequestsWarning: true,
+}});'''
+    if local:
+        familia, url = local
+        google = f'''const {{ fontFamily: respaldo }} = loadFont("normal", {{
   weights: {json.dumps(wf)}, subsets: ["latin", "latin-ext"], ignoreTooManyRequestsWarning: true,
 }});
+// {familia}: fuente local (no está en Google Fonts), copiada a public/ desde fuente.archivo.
+loadLocal({{ family: {json.dumps(familia)}, url: staticFile({json.dumps(url)}) }});
+export const fontFamily = `"{familia}", ${{respaldo}}`;'''
+    cabecera = ('import { loadFont as loadLocal } from "@remotion/fonts";\n'
+                'import { staticFile } from "remotion";\n') if local else ""
+    (RAIZ / "src" / "fonts.ts").write_text(f'''// GENERADO por scripts/aplica_perfil.py — cambia la fuente en tu perfil, no aquí.
+{cabecera}import {{ loadFont }} from "@remotion/google-fonts/{fam}";
+import {{ loadFont as loadMono }} from "@remotion/google-fonts/{mono}";
+
+{google}
 export const {{ fontFamily: mono }} = loadMono("normal", {{
   weights: {json.dumps(wm)}, subsets: ["latin"], ignoreTooManyRequestsWarning: true,
 }});
 ''')
+    fam = local[0] if local else fam
     if perfil:
         (RAIZ / "perfil.json").write_text(json.dumps(perfil, ensure_ascii=False, indent=2) + "\n")
     print(f"perfil aplicado: fuente {fam} · acento {col['accent']} · resalte {col['highlight']} · "
-          f"subtítulos {'MAYÚS' if subs['upper'] else 'normal'} {subs['size']}px · raíl {plano.get('espacio_libre', 'izquierda')}")
+          f"subtítulos {subs['estilo']} {'MAYÚS' if subs['upper'] else 'normal'} {subs['size']}px · raíl {plano.get('espacio_libre', 'izquierda')}")
 
 
 if __name__ == "__main__":

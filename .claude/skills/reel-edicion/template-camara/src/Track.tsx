@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, interpolate } from "remotion";
-import { COLORS, SAFE, FEED_CROP } from "./theme";
+import { COLORS, SAFE, FEED_CROP, INK_RGB } from "./theme";
 import { Logo, LOGO_COLOR, type LogoId } from "./Logos";
 import { at, outAt, mix, SPR } from "./anim";
 import { fontFamily } from "./fonts";
@@ -117,7 +117,7 @@ export const Track: React.FC<{ data: TrackData }> = ({ data }) => {
         position: "absolute", left: lx, top: ly, width: CHIP_W, minHeight: alto,
         boxSizing: "border-box", padding: "16px 20px",
         display: "flex", alignItems: "center", gap: 14,
-        background: `rgba(10,8,6,${0.88 * chipP})`,
+        background: `rgba(${INK_RGB},${0.88 * chipP})`,
         backdropFilter: `blur(${12 * chipP}px)`,
         border: `1px solid ${acento}66`,
         borderLeft: `4px solid ${acento}`,

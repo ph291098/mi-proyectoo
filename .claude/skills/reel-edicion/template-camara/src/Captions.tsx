@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { type Caption } from "@remotion/captions";
-import { COLORS, DZ, WIDTH, CAPTIONS } from "./theme";
+import { COLORS, DZ, WIDTH, CAPTIONS, INK_RGB } from "./theme";
 import { fontFamily } from "./fonts";
 
 
@@ -62,6 +62,16 @@ const paginate = (caps: Caption[], maxWords: number, maxGapMs = 950): Page[] => 
 };
 
 const baseShadow = "0 4px 18px rgba(0,0,0,0.55), 0 1px 0 rgba(0,0,0,0.4)";
+// «palabra»: la sombra es de la tinta del perfil, no negra (un negro puro ensucia una toma clara)
+const inkShadow = `0 3px 0 ${COLORS.ink}, 0 0 14px ${COLORS.ink}8C`;
+
+/** Estilo de los subtítulos (perfil → CAPTIONS.estilo):
+ *  "sombra"  texto suelto con trazo y sombra (el de siempre)
+ *  "pildora" banda oscura translúcida (= band: true)
+ *  "bloque"  caja clara (COLORS.paper), texto COLORS.onPaper, la palabra que suena en pastilla
+ *  "palabra" texto claro con sombra de tinta; la palabra que suena cambia de color */
+type Estilo = "sombra" | "pildora" | "bloque" | "palabra";
+const ESTILO = ((CAPTIONS as { estilo?: string }).estilo ?? "sombra") as Estilo;
 
 /**
  * POR QUÉ LA PALABRA NO ENTRA SOLA
@@ -81,8 +91,8 @@ const baseShadow = "0 4px 18px rgba(0,0,0,0.55), 0 1px 0 rgba(0,0,0,0.4)";
  * retiene. El movimiento no se pierde: cada palabra conserva un desplazamiento
  * escalonado, pero en TRANSFORMADA, nunca en opacidad.
  */
-const Word: React.FC<{ tok: Caption; nowMs: number; pageStartMs: number; size: number; i: number; accent: string; gap: number }> =
-  ({ tok, nowMs, pageStartMs, size, i, accent, gap }) => {
+const Word: React.FC<{ tok: Caption; nowMs: number; pageStartMs: number; size: number; i: number; accent: string; gap: number; estilo: Estilo }> =
+  ({ tok, nowMs, pageStartMs, size, i, accent, gap, estilo }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const enter = ((pageStartMs + i * 26) / 1000) * fps;
@@ -95,16 +105,38 @@ const Word: React.FC<{ tok: Caption; nowMs: number; pageStartMs: number; size: n
   const ap = spring({ frame: frame - (tok.startMs / 1000) * fps, fps, config: { damping: 14, mass: 0.45, stiffness: 220 } });
   const activeScale = active ? interpolate(ap, [0, 1], [1, 1.09]) : 1;
 
+  if (estilo === "bloque") {
+    // Caja clara: sin trazo ni sombra (sobre blanco ensucian). El resalte es una pastilla
+    // del color de resalte DETRÁS de la palabra; el texto sigue en tinta para leerse.
+    return (
+      <span
+        style={{
+          display: "inline-block",
+          transform: `translateY(${y}px) scale(${activeScale})`,
+          color: COLORS.onPaper,
+          margin: `0 ${Math.round(gap * 0.12)}px`,   // la pastilla ya separa: el hueco va en su padding
+          padding: `0 ${Math.round(size * 0.14)}px`,
+          borderRadius: Math.round(size * 0.18),
+          background: active ? accent : "transparent",
+          fontSize: size,
+        }}
+      >
+        {tok.text}
+      </span>
+    );
+  }
+
   return (
     <span
       style={{
         display: "inline-block",
         transform: `translateY(${y}px) scale(${activeScale})`,
-        color: active ? accent : COLORS.soft,
+        color: active ? accent : estilo === "palabra" ? COLORS.text : COLORS.soft,
         margin: `0 ${gap}px`,
-        WebkitTextStroke: "2px rgba(0,0,0,0.4)",
+        WebkitTextStroke: estilo === "palabra" ? undefined : "2px rgba(0,0,0,0.4)",
         paintOrder: "stroke fill",
-        textShadow: active ? `${baseShadow}, 0 0 26px ${accent}77` : baseShadow,
+        textShadow: estilo === "palabra" ? inkShadow
+          : active ? `${baseShadow}, 0 0 26px ${accent}77` : baseShadow,
         fontSize: size,
       }}
     >
@@ -147,7 +179,11 @@ export const Captions: React.FC<{
   /** color del resalte: por defecto COLORS.highlight, pero el montaje le pasa el color de la
    *  marca de la que se está hablando en ese tramo */
   accent?: string;
-}> = ({ captions, cy = 1120, x0, x1, band = CAPTIONS.band, maxWords = 3, size = 92, show, hide = [], accent = COLORS.highlight }) => {
+}> = ({ captions, cy = 1120, x0, x1, band: bandProp, maxWords = 3, size = 92, show, hide = [], accent = COLORS.highlight }) => {
+  // `band` explícito manda (true = píldora oscura); si no, lo decide el estilo del perfil
+  const estilo: Estilo = bandProp === true ? "pildora" : bandProp === false && ESTILO === "pildora" ? "sombra"
+    : ESTILO === "sombra" && CAPTIONS.band ? "pildora" : ESTILO;
+  const band = estilo === "pildora";
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const pages = React.useMemo(() => paginate(captions, maxWords), [captions, maxWords]);
@@ -178,6 +214,8 @@ export const Captions: React.FC<{
                       config: { damping: 20, mass: 0.4, stiffness: 250 } });
   const a = vis;
   const blockY = interpolate(pf, [0, 1], [8, 0]);
+  // «bloque» y «palabra»: pop corto de la página, escala 90 → 100 % (~5 frames), sin rebote
+  const pop = estilo === "bloque" || estilo === "palabra" ? interpolate(pf, [0, 1], [0.9, 1]) : 1;
 
   return (
     <div
@@ -191,11 +229,11 @@ export const Captions: React.FC<{
         flexWrap: "wrap",
         justifyContent: "center",
         alignContent: "center",
-        transform: `translateY(${blockY}px)`,
+        transform: `translateY(${blockY}px) scale(${pop})`,
         opacity: a,
         fontFamily,
         fontWeight: 800,
-        lineHeight: 1.02,
+        lineHeight: estilo === "bloque" ? 1.18 : 1.02,
         letterSpacing: "-0.02em",
         textAlign: "center",
         textTransform: CAPTIONS.upper ? "uppercase" : "none",
@@ -207,18 +245,19 @@ export const Captions: React.FC<{
           flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          padding: band ? "16px 34px" : 0,
+          padding: band ? "16px 34px" : estilo === "bloque" ? "10px 22px" : 0,
           minWidth: band ? 560 : undefined,
-          borderRadius: band ? 20 : 0,
-          background: band ? `rgba(10,8,6,${0.66 * a})` : "transparent",
+          borderRadius: band ? 20 : estilo === "bloque" ? 22 : 0,
+          background: band ? `rgba(${INK_RGB},${0.66 * a})` : estilo === "bloque" ? COLORS.paper : "transparent",
           backdropFilter: band ? "blur(10px)" : undefined,
           border: band ? `1px solid rgba(140,130,114,${0.4 * a})` : undefined,
-          boxShadow: band ? `0 12px 40px -14px rgba(0,0,0,${0.75 * a})` : undefined,
+          boxShadow: band ? `0 12px 40px -14px rgba(0,0,0,${0.75 * a})`
+            : estilo === "bloque" ? `0 10px 30px -12px ${COLORS.ink}66` : undefined,
         }}
       >
         {page.tokens.map((t, i) => (
           <Word key={`${page.startMs}-${i}`} nowMs={nowMs} tok={t} pageStartMs={page.startMs}
-                size={size} i={i} accent={accent} gap={gap} />
+                size={size} i={i} accent={accent} gap={gap} estilo={estilo} />
         ))}
       </div>
     </div>
