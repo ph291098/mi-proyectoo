@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Transcripción por palabra + cortes de silencio -> src/data/montaje.json
 
-  python3 scripts/montaje.py            # lee montaje.config.json
+  python3 scripts/montaje.py                       # lee montaje.config.json
+  python3 scripts/montaje.py --config prompt.config.json
 
 1. Palabras de Whisper (work/mi/audio.json) con las correcciones de `fix` (por índice).
 2. Silencios: un hueco SIN palabras de más de `max_silencio` s se corta. Además se
@@ -9,11 +10,15 @@
    la palabra dentro del silencio (p. ej. «Hey» 19.38 -> en realidad 19.82).
 3. Cada tramo conservado lleva `pad_in`/`pad_out` para no comerse ataques ni colas.
 4. Los tiempos de cada palabra se pasan a la línea de tiempo de SALIDA.
+5. `quitar`: rangos de palabras [i, j] que se eliminan (tomas falsas, repeticiones).
+6. Escenas: además de srcStart/srcEnd (segundos de fuente), aceptan anclas a PALABRAS
+   en cualquier nivel: `desde`/`en` = inicio de la palabra i, `hasta` = su final.
 """
-import json, pathlib, re, subprocess
+import argparse, json, pathlib, re, subprocess
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
-cfg = json.loads((RAIZ / "montaje.config.json").read_text())
+ap = argparse.ArgumentParser(); ap.add_argument("--config", default="montaje.config.json")
+cfg = json.loads((RAIZ / ap.parse_args().config).read_text())
 FPS = 30
 
 d = json.loads((RAIZ / cfg["whisper"]).read_text())
@@ -23,6 +28,11 @@ for k, v in cfg.get("fix", {}).items():
     if k.startswith("_"):
         continue
     words[int(k)]["text"] = v
+for w in words:
+    w["quitada"] = False
+for a, b in cfg.get("quitar", []):
+    for i in range(a, b + 1):
+        words[i]["quitada"] = True
 
 # silencios reales del audio
 out = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(RAIZ / cfg["audio"]), "-af",
@@ -43,6 +53,8 @@ for w in words:
 # tramos de habla: palabras separadas por <= max_silencio se funden
 tramos = []
 for w in words:
+    if w["quitada"]:
+        continue
     if tramos and w["start"] - tramos[-1][1] <= cfg["max_silencio"]:
         tramos[-1][1] = max(tramos[-1][1], w["end"])
     else:
@@ -70,6 +82,9 @@ def a_salida(t):
 
 palabras = []
 for i, w in enumerate(words):
+    if w["quitada"]:
+        palabras.append({"i": i, "text": "", "start": -1, "end": -1, "src": round(w["start"], 3)})
+        continue
     a, b = a_salida(w["start"]), a_salida(w["end"])
     palabras.append({"i": i, "text": w["text"], "start": round(a, 3), "end": round(b, 3),
                      "src": round(w["start"], 3)})
@@ -80,19 +95,39 @@ def mapa(t):  # tiempo de la fuente -> salida (para escenas declaradas en tiempo
         v = next(s["outStart"] for s in seg if s["from"] > t)
     return round(v, 3)
 
+def anclas(x):
+    """desde/en -> inicio de esa palabra en la salida; hasta -> su final. Recursivo."""
+    if isinstance(x, list):
+        return [anclas(v) for v in x]
+    if not isinstance(x, dict):
+        return x
+    o = {}
+    for k, v in x.items():
+        if k.startswith("_"):
+            continue
+        if k in ("desde", "en", "expandEn") and isinstance(v, int):
+            o[{"desde": "start", "en": "at", "expandEn": "expandAt"}[k]] = palabras[v]["start"]
+        elif k == "hasta" and isinstance(v, int):
+            o["end"] = palabras[v]["end"]
+        else:
+            o[k] = anclas(v)
+    return o
+
 escenas = []
 for e in cfg.get("escenas", []):
-    e = {k: v for k, v in e.items() if not k.startswith("_")}
-    e["start"], e["end"] = mapa(e.pop("srcStart")), mapa(e.pop("srcEnd"))
-    if "expandAt" in e:
-        e["expandAt"] = mapa(e["expandAt"])
+    e = anclas(e)
+    if "srcStart" in e:                       # escena en segundos de la FUENTE
+        e["start"], e["end"] = mapa(e.pop("srcStart")), mapa(e.pop("srcEnd"))
+        if "expandAt" in e:
+            e["expandAt"] = mapa(e["expandAt"])
     escenas.append(e)
 
 data = {"video": cfg["video_public"], "durationInFrames": total_f, "segments": seg,
         "words": palabras, "blocks": [{k: v for k, v in b.items() if not k.startswith("_")} for b in cfg["bloques"]],
-        "escenas": escenas, "handle": cfg["handle"], "zooms": cfg["zooms"]}
+        "escenas": escenas, "handle": cfg["handle"], "zooms": cfg["zooms"],
+        "sfx": anclas(cfg.get("sfx", [])), "musica": cfg.get("musica")}
 (RAIZ / "src" / "data").mkdir(exist_ok=True)
-(RAIZ / "src" / "data" / "montaje.json").write_text(json.dumps(data, ensure_ascii=False, indent=1))
+(RAIZ / "src" / "data" / cfg.get("salida", "montaje.json")).write_text(json.dumps(data, ensure_ascii=False, indent=1))
 
 print(f"silencios reales: {[(round(a,2), round(b,2)) for a, b in silencios]}")
 print(f"{len(seg)} tramos · fuente {dur_fuente:.2f} s -> salida {total_f / FPS:.2f} s "

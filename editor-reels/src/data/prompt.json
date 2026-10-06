@@ -1,0 +1,957 @@
+{
+ "video": "v2.mp4",
+ "durationInFrames": 772,
+ "segments": [
+  {
+   "from": 2.6666666666666665,
+   "to": 8.633333333333333,
+   "outStart": 0.0,
+   "fromF": 80,
+   "toF": 259,
+   "outF": 0
+  },
+  {
+   "from": 11.233333333333333,
+   "to": 13.166666666666666,
+   "outStart": 5.966666666666667,
+   "fromF": 337,
+   "toF": 395,
+   "outF": 179
+  },
+  {
+   "from": 14.0,
+   "to": 15.966666666666667,
+   "outStart": 7.9,
+   "fromF": 420,
+   "toF": 479,
+   "outF": 237
+  },
+  {
+   "from": 16.466666666666665,
+   "to": 19.033333333333335,
+   "outStart": 9.866666666666667,
+   "fromF": 494,
+   "toF": 571,
+   "outF": 296
+  },
+  {
+   "from": 19.666666666666668,
+   "to": 20.933333333333334,
+   "outStart": 12.433333333333334,
+   "fromF": 590,
+   "toF": 628,
+   "outF": 373
+  },
+  {
+   "from": 22.433333333333334,
+   "to": 24.8,
+   "outStart": 13.7,
+   "fromF": 673,
+   "toF": 744,
+   "outF": 411
+  },
+  {
+   "from": 32.0,
+   "to": 34.833333333333336,
+   "outStart": 16.066666666666666,
+   "fromF": 960,
+   "toF": 1045,
+   "outF": 482
+  },
+  {
+   "from": 35.96666666666667,
+   "to": 40.4,
+   "outStart": 18.9,
+   "fromF": 1079,
+   "toF": 1212,
+   "outF": 567
+  },
+  {
+   "from": 42.166666666666664,
+   "to": 44.56666666666667,
+   "outStart": 23.333333333333332,
+   "fromF": 1265,
+   "toF": 1337,
+   "outF": 700
+  }
+ ],
+ "words": [
+  {
+   "i": 0,
+   "text": "Si",
+   "start": 0.037,
+   "end": 0.233,
+   "src": 2.704
+  },
+  {
+   "i": 1,
+   "text": "le",
+   "start": 0.233,
+   "end": 0.373,
+   "src": 2.9
+  },
+  {
+   "i": 2,
+   "text": "escribes",
+   "start": 0.373,
+   "end": 0.793,
+   "src": 3.04
+  },
+  {
+   "i": 3,
+   "text": "a",
+   "start": 0.793,
+   "end": 0.993,
+   "src": 3.46
+  },
+  {
+   "i": 4,
+   "text": "la",
+   "start": 0.993,
+   "end": 1.093,
+   "src": 3.66
+  },
+  {
+   "i": 5,
+   "text": "IA",
+   "start": 1.093,
+   "end": 1.293,
+   "src": 3.76
+  },
+  {
+   "i": 6,
+   "text": "como",
+   "start": 1.293,
+   "end": 1.533,
+   "src": 3.96
+  },
+  {
+   "i": 7,
+   "text": "le",
+   "start": 1.533,
+   "end": 1.673,
+   "src": 4.2
+  },
+  {
+   "i": 8,
+   "text": "escribes",
+   "start": 1.673,
+   "end": 2.093,
+   "src": 4.34
+  },
+  {
+   "i": 9,
+   "text": "a",
+   "start": 2.093,
+   "end": 2.313,
+   "src": 4.76
+  },
+  {
+   "i": 10,
+   "text": "Google,",
+   "start": 2.313,
+   "end": 2.633,
+   "src": 4.98
+  },
+  {
+   "i": 11,
+   "text": "estás",
+   "start": 2.833,
+   "end": 3.053,
+   "src": 5.5
+  },
+  {
+   "i": 12,
+   "text": "desperdiciando",
+   "start": 3.053,
+   "end": 3.953,
+   "src": 5.72
+  },
+  {
+   "i": 13,
+   "text": "el",
+   "start": 3.953,
+   "end": 4.273,
+   "src": 6.62
+  },
+  {
+   "i": 14,
+   "text": "90%",
+   "start": 4.273,
+   "end": 4.553,
+   "src": 6.94
+  },
+  {
+   "i": 15,
+   "text": "",
+   "start": 4.553,
+   "end": 4.833,
+   "src": 7.22
+  },
+  {
+   "i": 16,
+   "text": "de",
+   "start": 4.833,
+   "end": 5.133,
+   "src": 7.5
+  },
+  {
+   "i": 17,
+   "text": "lo",
+   "start": 5.133,
+   "end": 5.233,
+   "src": 7.8
+  },
+  {
+   "i": 18,
+   "text": "que",
+   "start": 5.233,
+   "end": 5.333,
+   "src": 7.9
+  },
+  {
+   "i": 19,
+   "text": "puede",
+   "start": 5.333,
+   "end": 5.593,
+   "src": 8.0
+  },
+  {
+   "i": 20,
+   "text": "hacer.",
+   "start": 5.593,
+   "end": 5.873,
+   "src": 8.26
+  },
+  {
+   "i": 21,
+   "text": "Un",
+   "start": 6.007,
+   "end": 6.113,
+   "src": 11.274
+  },
+  {
+   "i": 22,
+   "text": "buen",
+   "start": 6.113,
+   "end": 6.253,
+   "src": 11.38
+  },
+  {
+   "i": 23,
+   "text": "prompt",
+   "start": 6.253,
+   "end": 6.493,
+   "src": 11.52
+  },
+  {
+   "i": 24,
+   "text": "tiene",
+   "start": 6.493,
+   "end": 6.913,
+   "src": 11.76
+  },
+  {
+   "i": 25,
+   "text": "cuatro",
+   "start": 6.913,
+   "end": 7.293,
+   "src": 12.18
+  },
+  {
+   "i": 26,
+   "text": "partes.",
+   "start": 7.293,
+   "end": 7.813,
+   "src": 12.56
+  },
+  {
+   "i": 27,
+   "text": "La",
+   "start": 7.943,
+   "end": 8.18,
+   "src": 14.043
+  },
+  {
+   "i": 28,
+   "text": "primera",
+   "start": 8.18,
+   "end": 8.52,
+   "src": 14.28
+  },
+  {
+   "i": 29,
+   "text": "es",
+   "start": 8.52,
+   "end": 8.8,
+   "src": 14.62
+  },
+  {
+   "i": 30,
+   "text": "su",
+   "start": 8.8,
+   "end": 9.44,
+   "src": 14.9
+  },
+  {
+   "i": 31,
+   "text": "rol,",
+   "start": 9.44,
+   "end": 9.76,
+   "src": 15.54
+  },
+  {
+   "i": 32,
+   "text": "debes",
+   "start": 9.905,
+   "end": 10.22,
+   "src": 16.505
+  },
+  {
+   "i": 33,
+   "text": "decirle",
+   "start": 10.22,
+   "end": 10.72,
+   "src": 16.82
+  },
+  {
+   "i": 34,
+   "text": "quién",
+   "start": 10.72,
+   "end": 10.96,
+   "src": 17.32
+  },
+  {
+   "i": 35,
+   "text": "es,",
+   "start": 10.96,
+   "end": 11.24,
+   "src": 17.56
+  },
+  {
+   "i": 36,
+   "text": "su",
+   "start": 11.4,
+   "end": 11.56,
+   "src": 18.0
+  },
+  {
+   "i": 37,
+   "text": "contexto,",
+   "start": 11.56,
+   "end": 12.34,
+   "src": 18.16
+  },
+  {
+   "i": 38,
+   "text": "cuéntale",
+   "start": 12.479,
+   "end": 12.847,
+   "src": 19.712
+  },
+  {
+   "i": 39,
+   "text": "tu",
+   "start": 12.847,
+   "end": 13.087,
+   "src": 20.08
+  },
+  {
+   "i": 40,
+   "text": "situación,",
+   "start": 13.087,
+   "end": 13.607,
+   "src": 20.32
+  },
+  {
+   "i": 41,
+   "text": "la",
+   "start": 13.749,
+   "end": 13.887,
+   "src": 22.482
+  },
+  {
+   "i": 42,
+   "text": "tarea,",
+   "start": 13.887,
+   "end": 14.327,
+   "src": 22.62
+  },
+  {
+   "i": 43,
+   "text": "pídele",
+   "start": 14.587,
+   "end": 14.927,
+   "src": 23.32
+  },
+  {
+   "i": 44,
+   "text": "algo",
+   "start": 14.927,
+   "end": 15.147,
+   "src": 23.66
+  },
+  {
+   "i": 45,
+   "text": "en",
+   "start": 15.147,
+   "end": 15.267,
+   "src": 23.88
+  },
+  {
+   "i": 46,
+   "text": "específico,",
+   "start": 15.267,
+   "end": 15.967,
+   "src": 24.0
+  },
+  {
+   "i": 47,
+   "text": "",
+   "start": -1,
+   "end": -1,
+   "src": 25.561
+  },
+  {
+   "i": 48,
+   "text": "",
+   "start": -1,
+   "end": -1,
+   "src": 25.84
+  },
+  {
+   "i": 49,
+   "text": "Su",
+   "start": 16.119,
+   "end": 16.307,
+   "src": 32.053
+  },
+  {
+   "i": 50,
+   "text": "formato,",
+   "start": 16.307,
+   "end": 16.907,
+   "src": 32.24
+  },
+  {
+   "i": 51,
+   "text": "dile",
+   "start": 17.067,
+   "end": 17.267,
+   "src": 33.0
+  },
+  {
+   "i": 52,
+   "text": "cómo",
+   "start": 17.267,
+   "end": 17.547,
+   "src": 33.2
+  },
+  {
+   "i": 53,
+   "text": "quieres",
+   "start": 17.547,
+   "end": 18.007,
+   "src": 33.48
+  },
+  {
+   "i": 54,
+   "text": "la",
+   "start": 18.007,
+   "end": 18.327,
+   "src": 33.94
+  },
+  {
+   "i": 55,
+   "text": "respuesta.",
+   "start": 18.327,
+   "end": 18.809,
+   "src": 34.26
+  },
+  {
+   "i": 56,
+   "text": "Con",
+   "start": 18.938,
+   "end": 19.053,
+   "src": 36.005
+  },
+  {
+   "i": 57,
+   "text": "eso",
+   "start": 19.053,
+   "end": 19.333,
+   "src": 36.12
+  },
+  {
+   "i": 58,
+   "text": "pasas",
+   "start": 19.333,
+   "end": 19.733,
+   "src": 36.4
+  },
+  {
+   "i": 59,
+   "text": "de",
+   "start": 19.733,
+   "end": 19.813,
+   "src": 36.8
+  },
+  {
+   "i": 60,
+   "text": "una",
+   "start": 19.813,
+   "end": 19.933,
+   "src": 36.88
+  },
+  {
+   "i": 61,
+   "text": "respuesta",
+   "start": 19.933,
+   "end": 20.513,
+   "src": 37.0
+  },
+  {
+   "i": 62,
+   "text": "genérica",
+   "start": 20.513,
+   "end": 21.073,
+   "src": 37.58
+  },
+  {
+   "i": 63,
+   "text": "a",
+   "start": 21.073,
+   "end": 21.773,
+   "src": 38.14
+  },
+  {
+   "i": 64,
+   "text": "una",
+   "start": 21.773,
+   "end": 21.973,
+   "src": 38.84
+  },
+  {
+   "i": 65,
+   "text": "que",
+   "start": 21.973,
+   "end": 22.093,
+   "src": 39.04
+  },
+  {
+   "i": 66,
+   "text": "de",
+   "start": 22.093,
+   "end": 22.233,
+   "src": 39.16
+  },
+  {
+   "i": 67,
+   "text": "verdad",
+   "start": 22.233,
+   "end": 22.473,
+   "src": 39.3
+  },
+  {
+   "i": 68,
+   "text": "te",
+   "start": 22.473,
+   "end": 22.833,
+   "src": 39.54
+  },
+  {
+   "i": 69,
+   "text": "sirve.",
+   "start": 22.833,
+   "end": 23.247,
+   "src": 39.9
+  },
+  {
+   "i": 70,
+   "text": "Comenta",
+   "start": 23.396,
+   "end": 23.747,
+   "src": 42.23
+  },
+  {
+   "i": 71,
+   "text": "la",
+   "start": 23.747,
+   "end": 23.887,
+   "src": 42.58
+  },
+  {
+   "i": 72,
+   "text": "palabra",
+   "start": 23.887,
+   "end": 24.227,
+   "src": 42.72
+  },
+  {
+   "i": 73,
+   "text": "prompt",
+   "start": 24.227,
+   "end": 24.567,
+   "src": 43.06
+  },
+  {
+   "i": 74,
+   "text": "y",
+   "start": 24.567,
+   "end": 24.827,
+   "src": 43.4
+  },
+  {
+   "i": 75,
+   "text": "te",
+   "start": 24.827,
+   "end": 24.967,
+   "src": 43.66
+  },
+  {
+   "i": 76,
+   "text": "envío",
+   "start": 24.967,
+   "end": 25.207,
+   "src": 43.8
+  },
+  {
+   "i": 77,
+   "text": "mi",
+   "start": 25.207,
+   "end": 25.407,
+   "src": 44.04
+  },
+  {
+   "i": 78,
+   "text": "guía.",
+   "start": 25.407,
+   "end": 25.623,
+   "src": 44.24
+  }
+ ],
+ "blocks": [
+  {
+   "from": 0,
+   "to": 5,
+   "key": [
+    5
+   ]
+  },
+  {
+   "from": 6,
+   "to": 10,
+   "key": [
+    10
+   ]
+  },
+  {
+   "from": 11,
+   "to": 15,
+   "key": [
+    14
+   ]
+  },
+  {
+   "from": 16,
+   "to": 20,
+   "key": [
+    20
+   ]
+  },
+  {
+   "from": 21,
+   "to": 26,
+   "key": [
+    25
+   ]
+  },
+  {
+   "from": 27,
+   "to": 31,
+   "key": [
+    31
+   ]
+  },
+  {
+   "from": 32,
+   "to": 37,
+   "key": [
+    37
+   ]
+  },
+  {
+   "from": 38,
+   "to": 40,
+   "key": [
+    40
+   ]
+  },
+  {
+   "from": 41,
+   "to": 46,
+   "key": [
+    42
+   ]
+  },
+  {
+   "from": 49,
+   "to": 55,
+   "key": [
+    50
+   ]
+  },
+  {
+   "from": 56,
+   "to": 62,
+   "key": [
+    62
+   ],
+   "serif": true
+  },
+  {
+   "from": 63,
+   "to": 69,
+   "key": [
+    69
+   ]
+  },
+  {
+   "from": 70,
+   "to": 78,
+   "key": [
+    73
+   ]
+  }
+ ],
+ "escenas": [
+  {
+   "t": "tarjeta",
+   "start": 0.037,
+   "end": 1.533,
+   "expandAt": 1.093,
+   "label": "IA · PROMPTS"
+  },
+  {
+   "t": "buscador",
+   "start": 2.313,
+   "end": 5.873,
+   "consulta": "post para instagram",
+   "dato": {
+    "at": 4.273,
+    "valor": 90,
+    "sufijo": "%",
+    "label": "desperdiciado"
+   }
+  },
+  {
+   "t": "cuatro",
+   "start": 6.007,
+   "end": 7.813,
+   "num": {
+    "at": 6.913
+   },
+   "partes": {
+    "at": 7.293
+   },
+   "items": [
+    "rol",
+    "contexto",
+    "tarea",
+    "formato"
+   ]
+  },
+  {
+   "t": "prompt",
+   "start": 9.44,
+   "end": 12.34,
+   "filas": [
+    {
+     "label": "ROL",
+     "texto": "Eres un copywriter experto en Instagram.",
+     "at": 9.44
+    },
+    {
+     "label": "CONTEXTO",
+     "texto": "Tengo una cuenta de IA para negocios.",
+     "at": 11.56
+    },
+    {
+     "label": "TAREA",
+     "texto": "Escríbeme 3 ganchos para un reel.",
+     "at": 13.887
+    },
+    {
+     "label": "FORMATO",
+     "texto": "Lista numerada, máx. 12 palabras.",
+     "at": 16.307
+    }
+   ]
+  },
+  {
+   "t": "prompt",
+   "start": 13.749,
+   "end": 15.967,
+   "filas": [
+    {
+     "label": "ROL",
+     "texto": "Eres un copywriter experto en Instagram.",
+     "at": 9.44
+    },
+    {
+     "label": "CONTEXTO",
+     "texto": "Tengo una cuenta de IA para negocios.",
+     "at": 11.56
+    },
+    {
+     "label": "TAREA",
+     "texto": "Escríbeme 3 ganchos para un reel.",
+     "at": 13.887
+    },
+    {
+     "label": "FORMATO",
+     "texto": "Lista numerada, máx. 12 palabras.",
+     "at": 16.307
+    }
+   ]
+  },
+  {
+   "t": "prompt",
+   "start": 16.307,
+   "end": 18.809,
+   "completoEn": {
+    "at": 18.327
+   },
+   "filas": [
+    {
+     "label": "ROL",
+     "texto": "Eres un copywriter experto en Instagram.",
+     "at": 9.44
+    },
+    {
+     "label": "CONTEXTO",
+     "texto": "Tengo una cuenta de IA para negocios.",
+     "at": 11.56
+    },
+    {
+     "label": "TAREA",
+     "texto": "Escríbeme 3 ganchos para un reel.",
+     "at": 13.887
+    },
+    {
+     "label": "FORMATO",
+     "texto": "Lista numerada, máx. 12 palabras.",
+     "at": 16.307
+    }
+   ]
+  },
+  {
+   "t": "comparacion",
+   "start": 20.513,
+   "end": 23.247,
+   "buena": {
+    "at": 22.093
+   }
+  },
+  {
+   "t": "comentario",
+   "start": 24.227,
+   "end": 25.623,
+   "palabra": "prompt",
+   "guia": {
+    "at": 24.967,
+    "label": "guía de prompts"
+   }
+  }
+ ],
+ "handle": "@pablohernandez.ai",
+ "zooms": {
+  "escalas": [
+   1.0,
+   1.1
+  ],
+  "origen": "50% 45%",
+  "_": "la fuente útil es 402x714 escalada ×2,7: más de 1.1 se ve blando"
+ },
+ "sfx": [
+  {
+   "s": "whoosh",
+   "at": 1.093,
+   "gain": -16
+  },
+  {
+   "s": "whoosh",
+   "at": 2.313,
+   "gain": -14
+  },
+  {
+   "s": "pop",
+   "at": 4.273,
+   "gain": -12
+  },
+  {
+   "s": "whoosh",
+   "at": 6.007,
+   "gain": -14
+  },
+  {
+   "s": "pop",
+   "at": 6.913,
+   "gain": -12
+  },
+  {
+   "s": "whoosh",
+   "at": 9.44,
+   "gain": -14
+  },
+  {
+   "s": "clic",
+   "at": 11.56,
+   "gain": -16
+  },
+  {
+   "s": "whoosh",
+   "at": 13.749,
+   "gain": -15
+  },
+  {
+   "s": "clic",
+   "at": 13.887,
+   "gain": -16
+  },
+  {
+   "s": "whoosh",
+   "at": 16.307,
+   "gain": -15
+  },
+  {
+   "s": "pop",
+   "at": 18.327,
+   "gain": -13
+  },
+  {
+   "s": "whoosh",
+   "at": 20.513,
+   "gain": -14
+  },
+  {
+   "s": "pop",
+   "at": 22.093,
+   "gain": -12
+  },
+  {
+   "s": "whoosh",
+   "at": 24.227,
+   "gain": -14
+  },
+  {
+   "s": "pop",
+   "at": 24.967,
+   "gain": -12
+  }
+ ],
+ "musica": {
+  "src": "musica.wav",
+  "_": "se mezcla en scripts/sonido.sh con ducking bajo la voz"
+ }
+}

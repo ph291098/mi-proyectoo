@@ -509,5 +509,7 @@
   ],
   "origen": "50% 38%",
   "_": "alterna escala en cada salto de corte a cámara (referencia: 1.0 ↔ ≈1.2); 1.15 porque la fuente ya es 1080x1920 y más se nota"
- }
+ },
+ "sfx": [],
+ "musica": null
 }
