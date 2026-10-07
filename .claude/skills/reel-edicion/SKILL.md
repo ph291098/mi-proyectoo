@@ -1,6 +1,6 @@
 ---
 name: reel-edicion
-description: Monta y renderiza reels/TikToks/Shorts verticales (1080x1920) con Remotion a partir de una grabación a cámara, un split de CapCut, una charla o una grabación de pantalla. Subtítulos con resalte palabra a palabra, tarjetas de refuerzo, diagramas con iconos que se dibujan, B-roll a pantalla completa, logos de marca reales, grafismo de suspenso (sellos, cronómetro, censura), música y efectos CC0, difuminado de datos sensibles verificado con OCR, y export a -14 LUFS y color bt709. Viene adaptada a la marca de @pablohernandez.ai (perfil.json + ESTILO.md: lavanda y tinta violeta, Coolvetica, subtítulos en bloque blanco); un cuestionario permite cambiar de estilo. Úsala cuando el usuario quiera "montar el reel", "editar este vídeo para TikTok/Instagram", "ponerle subtítulos", "renderizar el reel", "configurar mi estilo de edición" o retocar una composición existente.
+description: Monta y renderiza reels/TikToks/Shorts verticales (1080x1920) con Remotion a partir de una grabación a cámara, un split de CapCut, una charla o una grabación de pantalla. Subtítulos con resalte palabra a palabra, tarjetas de refuerzo, diagramas con iconos que se dibujan, B-roll a pantalla completa, logos de marca reales, grafismo de suspenso (sellos, cronómetro, censura), música y efectos CC0, difuminado de datos sensibles verificado con OCR, y export a -14 LUFS y color bt709. Viene adaptada a la marca de @soypablo.ai (perfil.json + ESTILO.md: lavanda y tinta violeta, Coolvetica, subtítulos en bloque blanco); un cuestionario permite cambiar de estilo. Úsala cuando el usuario quiera "montar el reel", "editar este vídeo para TikTok/Instagram", "ponerle subtítulos", "renderizar el reel", "configurar mi estilo de edición" o retocar una composición existente.
 user-invocable: true
 allowed-tools:
   - Bash
@@ -23,7 +23,7 @@ SKILL_DIR=$(git rev-parse --show-toplevel 2>/dev/null)/.claude/skills/reel-edici
 cat ~/.config/reel-edicion/perfil.json 2>/dev/null || echo "SIN PERFIL"
 ```
 
-**Esta skill ya viene adaptada a @pablohernandez.ai.** `perfil.json` (en esta carpeta) es
+**Esta skill ya viene adaptada a @soypablo.ai.** `perfil.json` (en esta carpeta) es
 su perfil de marca, sacado de su moodboard de vídeo, y `ESTILO.md` recoge el resto de su
 sistema visual: subtítulos A/B/C, overlays, ritmo, color, audio y portadas. **Lee
 `ESTILO.md` antes de montar nada**: sus reglas valen tanto como las de abajo.
@@ -758,7 +758,7 @@ un cambio visual cada 2–4 s y una sola acción en el CTA.
 ```
 reel-edicion/
 ├── SKILL.md · CUESTIONARIO.md · perfil.example.json
-├── perfil.json · ESTILO.md          ← marca @pablohernandez.ai (perfil por defecto + guía de estilo)
+├── perfil.json · ESTILO.md          ← marca @soypablo.ai (perfil por defecto + guía de estilo)
 ├── template-camara/                 ← vertical a cuadro completo (casi siempre)
 │   ├── cortes.example.json          demo comentada
 │   ├── src/

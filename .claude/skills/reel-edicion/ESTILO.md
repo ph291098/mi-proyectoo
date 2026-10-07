@@ -1,4 +1,4 @@
-# Estilo de @pablohernandez.ai
+# Estilo de @soypablo.ai
 
 Sacado del moodboard de vídeo (https://claude.ai/artifact/Mz2y1wfY1rrbkaeZWfqJQU).
 Los valores que la plantilla puede leer ya están en `perfil.json`. Este documento recoge
@@ -72,7 +72,7 @@ Reglas fijas:
   (nunca un dato a ojo) sigue valiendo.
 - **Cierre y CTA**: los últimos 2 s, sobre lavanda, con una sola acción: guardar,
   comentar una palabra o seguir. Nunca las tres a la vez. La acción por defecto es
-  «guárdalo para después» (`cta.texto`), con la firma `@pablohernandez.ai`.
+  «guárdalo para después» (`cta.texto`), con la firma `@soypablo.ai`.
 
 ## Reglas de edición
 

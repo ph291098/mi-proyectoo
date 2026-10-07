@@ -9,7 +9,7 @@
   "umbral_db": -35,
   "pad_in": 0.05,
   "pad_out": 0.1,
-  "handle": "@pablohernandez.ai",
+  "handle": "@soypablo.ai",
   "fix": { "14": "90%", "15": "", "_porque": "Whisper separa «90» y «%»: se unen en un token" },
   "quitar": [[47, 48]],
   "_quitar": "toma falsa: «su formato.» (25.3 s), 5 s de pausa y lo repite bien en 31.6 s («Su formato, dile cómo…»)",
