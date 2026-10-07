@@ -15,3 +15,11 @@
   (estilos guardados en `estilos/`, plantilla Remotion en `plantilla/`).
 - `editor-reels/`: proyecto donde nació reel-referencia (borradores del outfit y de «4 partes de un buen prompt»).
 - Coolvetica tiene licencia de escritorio: nunca se sube al repo (solo su ruta local).
+
+## Moodboards de vídeo
+
+- **Azul, sacado de la referencia** (lienzo claro, azul #0050FB, Inter Tight + Instrument Serif):
+  https://claude.ai/artifact/6FozXnemGjg8j7WSEcnJ4P — su estilo.md es
+  `.claude/skills/reel-referencia/estilos/ejemplo-referencia.md`.
+- **Lavanda, el primero** (lavanda #C9B8FF, violeta #6A4DF0, Coolvetica):
+  https://claude.ai/artifact/Mz2y1wfY1rrbkaeZWfqJQU — usado por la skill reel-edicion.

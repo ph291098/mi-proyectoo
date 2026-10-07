@@ -1,5 +1,7 @@
 # estilo.md — sacado de `referencia.mp4`
 
+Moodboard visual de este estilo: https://claude.ai/artifact/6FozXnemGjg8j7WSEcnJ4P
+
 Fuente analizada: 720×1280, 30 fps, 29,5 s, 133 palabras (272 palabras/min). Lo he medido
 en 59 fotogramas (2 por segundo), en los cambios de plano (`ffmpeg scene > 0.25`), en la
 transcripción de Whisper turbo con tiempos por palabra y con `loudnorm`/`silencedetect`
