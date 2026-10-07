@@ -11,5 +11,7 @@
 ## Dónde está cada cosa
 
 - `.claude/skills/reel-edicion/`: skill para montar reels con su marca (perfil.json + ESTILO.md).
-- `editor-reels/`: proyecto Remotion del flujo «vídeo de referencia → estilo.md → edición».
+- `.claude/skills/reel-referencia/`: skill para editar copiando el estilo de un vídeo de referencia
+  (estilos guardados en `estilos/`, plantilla Remotion en `plantilla/`).
+- `editor-reels/`: proyecto donde nació reel-referencia (borradores del outfit y de «4 partes de un buen prompt»).
 - Coolvetica tiene licencia de escritorio: nunca se sube al repo (solo su ruta local).

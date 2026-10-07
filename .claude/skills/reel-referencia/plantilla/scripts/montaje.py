@@ -1,0 +1,136 @@
+#!/usr/bin/env python3
+"""Transcripción por palabra + cortes de silencio -> src/data/montaje.json
+
+  python3 scripts/montaje.py                       # lee montaje.config.json
+  python3 scripts/montaje.py --config prompt.config.json
+
+1. Palabras de Whisper (work/mi/audio.json) con las correcciones de `fix` (por índice).
+2. Silencios: un hueco SIN palabras de más de `max_silencio` s se corta. Además se
+   descuentan los silencios reales del audio (silencedetect), porque Whisper alarga
+   la palabra dentro del silencio (p. ej. «Hey» 19.38 -> en realidad 19.82).
+3. Cada tramo conservado lleva `pad_in`/`pad_out` para no comerse ataques ni colas.
+4. Los tiempos de cada palabra se pasan a la línea de tiempo de SALIDA.
+5. `quitar`: rangos de palabras [i, j] que se eliminan (tomas falsas, repeticiones).
+6. Escenas: además de srcStart/srcEnd (segundos de fuente), aceptan anclas a PALABRAS
+   en cualquier nivel: `desde`/`en` = inicio de la palabra i, `hasta` = su final.
+"""
+import argparse, json, pathlib, re, subprocess
+
+RAIZ = pathlib.Path(__file__).resolve().parent.parent
+ap = argparse.ArgumentParser(); ap.add_argument("--config", default="montaje.config.json")
+cfg = json.loads((RAIZ / ap.parse_args().config).read_text())
+FPS = 30
+
+d = json.loads((RAIZ / cfg["whisper"]).read_text())
+words = [{"text": w["word"].strip(), "start": w["start"], "end": w["end"]}
+         for s in d["segments"] for w in s["words"]]
+for k, v in cfg.get("fix", {}).items():
+    if k.startswith("_"):
+        continue
+    words[int(k)]["text"] = v
+for w in words:
+    w["quitada"] = False
+for a, b in cfg.get("quitar", []):
+    for i in range(a, b + 1):
+        words[i]["quitada"] = True
+
+# silencios reales del audio
+out = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(RAIZ / cfg["audio"]), "-af",
+                      f"silencedetect=n={cfg['umbral_db']}dB:d={cfg['max_silencio']}", "-f", "null", "-"],
+                     capture_output=True, text=True).stderr
+ini = [float(x) for x in re.findall(r"silence_start: ([\d.]+)", out)]
+fin = [float(x) for x in re.findall(r"silence_end: ([\d.]+)", out)]
+silencios = list(zip(ini, fin))
+
+# recorta cada palabra contra los silencios reales (sin dejarla a menos de 0.06 s)
+for w in words:
+    for a, b in silencios:
+        if a <= w["start"] < b and b < w["end"] - 0.06:
+            w["start"] = b
+        if a < w["end"] <= b and a > w["start"] + 0.06:
+            w["end"] = a
+
+# tramos de habla: palabras separadas por <= max_silencio se funden
+tramos = []
+for w in words:
+    if w["quitada"]:
+        continue
+    if tramos and w["start"] - tramos[-1][1] <= cfg["max_silencio"]:
+        tramos[-1][1] = max(tramos[-1][1], w["end"])
+    else:
+        tramos.append([w["start"], w["end"]])
+dur_fuente = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                                   str(RAIZ / cfg["video"])], capture_output=True, text=True).stdout)
+seg, t_out = [], 0.0
+for a, b in tramos:
+    a = max(0.0, a - cfg["pad_in"]); b = min(dur_fuente, b + cfg["pad_out"])
+    if seg and a <= seg[-1]["to"]:          # los pads se solapan: un solo tramo
+        t_out += b - seg[-1]["to"]; seg[-1]["to"] = b; continue
+    # a fotogramas enteros para que no haya deriva
+    fa, fb = round(a * FPS), round(b * FPS)
+    seg.append({"from": fa / FPS, "to": fb / FPS, "outStart": round(t_out * FPS) / FPS})
+    t_out += (fb - fa) / FPS
+for s in seg:
+    s["fromF"], s["toF"], s["outF"] = round(s["from"] * FPS), round(s["to"] * FPS), round(s["outStart"] * FPS)
+total_f = seg[-1]["outF"] + seg[-1]["toF"] - seg[-1]["fromF"]
+
+def a_salida(t):
+    for s in seg:
+        if s["from"] - 1e-6 <= t <= s["to"] + 1e-6:
+            return s["outStart"] + (t - s["from"])
+    return None
+
+palabras = []
+for i, w in enumerate(words):
+    if w["quitada"]:
+        palabras.append({"i": i, "text": "", "start": -1, "end": -1, "src": round(w["start"], 3)})
+        continue
+    a, b = a_salida(w["start"]), a_salida(w["end"])
+    palabras.append({"i": i, "text": w["text"], "start": round(a, 3), "end": round(b, 3),
+                     "src": round(w["start"], 3)})
+
+def mapa(t):  # tiempo de la fuente -> salida (para escenas declaradas en tiempos de fuente)
+    v = a_salida(t)
+    if v is None:  # cae en un hueco cortado: va al inicio del siguiente tramo
+        v = next(s["outStart"] for s in seg if s["from"] > t)
+    return round(v, 3)
+
+def anclas(x):
+    """desde/en -> inicio de esa palabra en la salida; hasta -> su final. Recursivo."""
+    if isinstance(x, list):
+        return [anclas(v) for v in x]
+    if not isinstance(x, dict):
+        return x
+    o = {}
+    for k, v in x.items():
+        if k.startswith("_"):
+            continue
+        if k in ("desde", "en", "expandEn") and isinstance(v, int):
+            o[{"desde": "start", "en": "at", "expandEn": "expandAt"}[k]] = palabras[v]["start"]
+        elif k == "hasta" and isinstance(v, int):
+            o["end"] = palabras[v]["end"]
+        else:
+            o[k] = anclas(v)
+    return o
+
+escenas = []
+for e in cfg.get("escenas", []):
+    e = anclas(e)
+    if "srcStart" in e:                       # escena en segundos de la FUENTE
+        e["start"], e["end"] = mapa(e.pop("srcStart")), mapa(e.pop("srcEnd"))
+        if "expandAt" in e:
+            e["expandAt"] = mapa(e["expandAt"])
+    escenas.append(e)
+
+data = {"video": cfg["video_public"], "durationInFrames": total_f, "segments": seg,
+        "words": palabras, "blocks": [{k: v for k, v in b.items() if not k.startswith("_")} for b in cfg["bloques"]],
+        "escenas": escenas, "handle": cfg["handle"], "zooms": cfg["zooms"],
+        "sfx": anclas(cfg.get("sfx", [])), "musica": cfg.get("musica")}
+(RAIZ / "src" / "data").mkdir(exist_ok=True)
+(RAIZ / "src" / "data" / cfg.get("salida", "montaje.json")).write_text(json.dumps(data, ensure_ascii=False, indent=1))
+
+print(f"silencios reales: {[(round(a,2), round(b,2)) for a, b in silencios]}")
+print(f"{len(seg)} tramos · fuente {dur_fuente:.2f} s -> salida {total_f / FPS:.2f} s "
+      f"({dur_fuente - total_f / FPS:.2f} s de silencio fuera)")
+for s in seg:
+    print(f"  fuente {s['from']:6.2f} -> {s['to']:6.2f}   salida {s['outStart']:6.2f}")
