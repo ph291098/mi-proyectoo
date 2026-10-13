@@ -1,0 +1,126 @@
+{
+  "_about": "The reference reel rebuilt as a plan with the real words of the voice-over (the AI-rendered text in the original was garbled). 21 s, 1080x1920, 24 fps. Word times = spoken time - ~0.1 s.",
+  "width": 1080,
+  "height": 1920,
+  "font": "Inter Display",
+  "scenes": [
+    {
+      "_shot": "HOOK - high-angle wide, subject crouched pointing at camera, round spotlight on dark floor, camera pulls back",
+      "start": 0.0, "end": 2.083, "mode": "cloud", "style": "shadow",
+      "fx": ["spotlight"], "spotlight": {"y": 0.45, "r": 0.44, "zoom": [1.45, 1.0], "zoom_dur": 1.0},
+      "words": [
+        {"text": "you", "t": 0.0},
+        {"text": "all", "t": 0.36},
+        {"text": "have", "t": 0.52},
+        {"text": "asking", "t": 0.76, "layer": "behind"},
+        {"text": "how", "t": 1.06},
+        {"text": "do this", "t": 1.70, "enter": "focus"}
+      ]
+    },
+    {
+      "_shot": "MACRO PROP - magnifying glass sliding over a laptop keyboard, chromatic aberration on the lens rim",
+      "start": 2.083, "end": 3.5, "mode": "swap", "style": "glow-dark", "anchor": [0.5, 0.36],
+      "words": [
+        {"text": "so", "t": 2.38, "size": "xl"},
+        {"text": "let me", "t": 2.62},
+        {"text": "show you", "t": 3.08}
+      ]
+    },
+    {
+      "_shot": "MACRO PROP - yellow sticky note slides into frame on a light desk, top-down 3/4",
+      "start": 3.5, "end": 4.583, "mode": "swap", "style": "glow", "anchor": [0.6, 0.33],
+      "rot": 12, "skew": -0.2,
+      "words": [
+        {"text": "first", "t": 3.6, "size": "xl"},
+        {"text": "pick", "t": 4.22, "size": "xl"},
+        {"text": "a", "t": 4.42, "size": "xl"}
+      ]
+    },
+    {
+      "_shot": "ESTABLISHING - editing desk at night, warm lamp + monitor glow, slow push-in",
+      "start": 4.583, "end": 7.083, "mode": "swap", "style": "shadow", "anchor": [0.34, 0.40], "enter": "fade",
+      "words": [
+        {"text": "font", "t": 4.6, "size": "l"},
+        {"text": "bold", "t": 5.84, "size": "l"},
+        {"text": "clean", "t": 6.6, "size": "l"}
+      ]
+    },
+    {
+      "_shot": "SCREEN B-ROLL - macro of the font menu (San Francisco / Helvetica), whip into UI, cursor clicks. No overlay: the screen IS the text",
+      "start": 7.083, "end": 9.208, "mode": "none", "say": "like", "words": []
+    },
+    {
+      "_shot": "DETAIL - hands typing on laptop, shallow depth of field",
+      "start": 9.208, "end": 11.042, "mode": "swap", "style": "shadow", "anchor": [0.5, 0.45],
+      "words": [
+        {"text": "Next", "t": 10.6, "keep_case": true, "enter": "cut"}
+      ]
+    },
+    {
+      "_shot": "BOLD BACKDROP - subject arms crossed against saturated red wall; 'key' becomes a key icon sliding in behind the subject",
+      "start": 11.042, "end": 12.333, "mode": "stack", "style": "flat",
+      "words": [
+        {"text": "place", "t": 11.1, "pos": [0.5, 0.165], "size": "hero"},
+        {"text": "ment", "t": 11.42, "pos": [0.5, 0.315], "size": "hero", "layer": "behind"}
+      ],
+      "images": [
+        {"src": "key_icon.png", "t": 11.62, "x": 0.5, "y": 0.66, "w": 0.6, "from": "left", "layer": "behind"}
+      ]
+    },
+    {
+      "_shot": "WHITE CYC - subject small, seated on the floor, high-key; text demonstrates placement ('here' top, 'down here' bottom)",
+      "start": 12.333, "end": 14.625, "mode": "stack", "style": "glow",
+      "words": [
+        {"text": "keep", "t": 12.56},
+        {"text": "it", "t": 12.82},
+        {"text": "classic", "t": 12.9, "pos": [0.5, 0.6]},
+        {"text": "here", "t": 13.14, "clear": true, "pos": [0.5, 0.17]},
+        {"text": "or", "t": 13.66, "pos": [0.28, 0.33]},
+        {"text": "down", "t": 14.02, "pos": [0.74, 0.42]},
+        {"text": "here", "t": 14.24, "pos": [0.5, 0.6]}
+      ]
+    },
+    {
+      "_shot": "WHITE CYC - medium, subject writing on a yellow pad",
+      "start": 14.625, "end": 15.958, "mode": "stack", "style": "glow",
+      "words": [
+        {"text": "or", "t": 14.66, "pos": [0.25, 0.22], "size": "l"},
+        {"text": "get", "t": 14.82, "pos": [0.28, 0.22], "size": "xl", "clear": true},
+        {"text": "creative", "t": 15.26, "pos": [0.52, 0.52], "size": "xl"}
+      ]
+    },
+    {
+      "_shot": "CALLBACK - spotlight again, subject writing on the floor; words float at different depths ('3D space')",
+      "start": 15.958, "end": 17.875, "mode": "cloud", "style": "shadow",
+      "fx": ["spotlight"], "spotlight": {"y": 0.47, "r": 0.40},
+      "words": [
+        {"text": "make", "t": 16.1},
+        {"text": "your", "t": 16.22},
+        {"text": "text", "t": 16.36},
+        {"text": "move", "t": 16.56, "layer": "behind"},
+        {"text": "in", "t": 16.84},
+        {"text": "the", "t": 17.06},
+        {"text": "3D space", "t": 17.16, "enter": "focus", "keep_case": true}
+      ]
+    },
+    {
+      "_shot": "EXTREME MACRO - pen writing on a yellow legal pad; the pen passes in front of the word",
+      "start": 17.875, "end": 19.75, "mode": "swap", "style": "shadow", "anchor": [0.5, 0.39],
+      "words": [
+        {"text": "keep", "t": 18.06, "layer": "behind", "size": "l"},
+        {"text": "it", "t": 18.28, "size": "l"},
+        {"text": "engaging", "t": 18.52, "size": "l"},
+        {"text": "Now", "t": 19.36, "keep_case": true, "size": "l", "layer": "behind"}
+      ]
+    },
+    {
+      "_shot": "OUTRO - subject at the desk at night, hand on chin, looking at the timeline",
+      "start": 19.75, "end": 21.04, "mode": "slide", "style": "shadow",
+      "words": [
+        {"text": "tweak", "t": 19.75},
+        {"text": "the", "t": 20.0},
+        {"text": "look", "t": 20.2}
+      ]
+    }
+  ]
+}
