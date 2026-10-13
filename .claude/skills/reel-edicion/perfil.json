@@ -1,0 +1,67 @@
+{
+  "_origen": "Moodboard de video de Pablo Hernández (claude.ai/artifact/Mz2y1wfY1rrbkaeZWfqJQU). Instagram: @soypablo.ai. Reglas completas en ESTILO.md.",
+  "handle": "@soypablo.ai",
+  "idioma": "es",
+  "plataformas": [
+    "reels",
+    "tiktok",
+    "shorts"
+  ],
+  "colores": {
+    "accent": "#6A4DF0",
+    "highlight": "#C9B8FF",
+    "ink": "#1E1433",
+    "text": "#FFFFFF",
+    "soft": "#EFEAFF",
+    "line": "#8C7FB8",
+    "ok": "#4ADE80",
+    "alert": "#FB7185",
+    "paper": "#FFFFFF",
+    "onPaper": "#1E1433"
+  },
+  "fuente": {
+    "principal": "Coolvetica",
+    "archivo": "~/Library/Fonts/Coolvetica Rg.otf",
+    "respaldo": "Archivo",
+    "mono": "JetBrains Mono",
+    "_licencia": "Coolvetica (Typodermic) tiene licencia de escritorio: se instala en TU ordenador (doble clic en el .otf) y nunca se sube a un repo ni a un servidor. Esta skill solo guarda la ruta."
+  },
+  "subtitulos": {
+    "estilo": "bloque",
+    "upper": false,
+    "size": 68,
+    "maxWords": 4,
+    "band": false,
+    "byBrand": false
+  },
+  "plano": {
+    "fuente_habitual": "camara",
+    "espacio_libre": "izquierda"
+  },
+  "audio": {
+    "biblioteca": "~/ReelKit",
+    "efectos": true,
+    "musica": true,
+    "micro": "cercano"
+  },
+  "cta": {
+    "tipo": "seguir",
+    "texto": "guárdalo para después"
+  },
+  "marcas_frecuentes": [],
+  "notas": {
+    "tono": "claro, cercano y didáctico: IA explicada para personas, tech con calidez, premium accesible; como una clase bien dada en un estudio luminoso",
+    "evitar": [
+      "fondos negros",
+      "más de 2 colores de acento",
+      "emojis (ni animados ni en tarjetas)",
+      "neón gamer, glitch, robots y cerebros brillantes de stock",
+      "transiciones de plantilla: cubos, destellos, glitch",
+      "música con letra bajo la voz",
+      "grabación de pantalla cruda a pantalla completa (siempre enmarcada)",
+      "violeta eléctrico en bloques grandes",
+      "más de una acción en el CTA",
+      "mayúsculas salvo en nombres propios"
+    ]
+  }
+}

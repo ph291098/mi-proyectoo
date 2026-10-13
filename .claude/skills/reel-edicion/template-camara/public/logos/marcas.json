@@ -1,0 +1,33 @@
+{
+  "claude": {
+    "name": "Claude",
+    "color": "#D97757"
+  },
+  "github": {
+    "name": "GitHub",
+    "color": "#E8E8E8",
+    "nota": "oficial #181717: aclarado para fondo oscuro"
+  },
+  "whatsapp": {
+    "name": "WhatsApp",
+    "color": "#25D366"
+  },
+  "telegram": {
+    "name": "Telegram",
+    "color": "#26A5E4"
+  },
+  "notion": {
+    "name": "Notion",
+    "color": "#E8E8E8",
+    "nota": "oficial #000000: aclarado para fondo oscuro"
+  },
+  "slack": {
+    "name": "Slack",
+    "color": "#E8E8E8",
+    "nota": "oficial casi negro"
+  },
+  "discord": {
+    "name": "Discord",
+    "color": "#5865F2"
+  }
+}
