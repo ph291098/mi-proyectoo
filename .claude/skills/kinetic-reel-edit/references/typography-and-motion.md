@@ -127,6 +127,7 @@ sujeto. `assets/key_icon.png` es el ejemplo de la referencia. Para otros íconos
       "keep_case": false,
       "layer": "front",                   // default de la escena
       "fx": ["spotlight"],
+      "say": "like",                      // opcional: 1.ª palabra que suena (anclar planos sin texto en retime)
       "spotlight": {"x": 0.5, "y": 0.45, "r": 0.42, "edge": 0.07, "tint": "#1E3550",
                     "zoom": [1.45, 1.0], "zoom_dur": 1.0},
       "words": [
@@ -134,7 +135,8 @@ sujeto. `assets/key_icon.png` es el ejemplo de la referencia. Para otros íconos
         {"text": "asking", "t": 0.76, "layer": "behind"},
         {"text": "do this", "t": 1.7, "enter": "focus", "size": "xl"},
         {"text": "here", "t": 13.14, "clear": true, "pos": [0.5, 0.17]},   // pos normalizada
-        {"text": "Next", "t": 10.6, "keep_case": true, "end": 11.0}
+        {"text": "Next", "t": 10.6, "keep_case": true, "end": 11.0},
+        {"text": "24", "t": 12.0, "say": "veinticuatro"}      // say = lo que suena (para retime)
       ],
       "images": [
         {"src": "key_icon.png", "t": 11.62, "x": 0.5, "y": 0.66, "w": 0.6,
@@ -146,4 +148,9 @@ sujeto. `assets/key_icon.png` es el ejemplo de la referencia. Para otros íconos
 ```
 
 Claves que empiezan por `_` (`_shot`, `_bg`, `_about`) son notas y el script las ignora.
+
+**Retime**: `kinetic_captions.py retime --plan plan.json --words nuevas.json --out plan2.json` busca cada palabra del
+plan, en orden, en la nueva transcripción (por su primer token, o por `say`), le pone el nuevo `t` (− `--lead`) y
+rehace los cortes (`--cut-lead` antes de la primera palabra de cada escena). Las escenas sin palabras usan `say` o se
+interpolan; las palabras sin coincidencia conservan su desfase dentro de la escena y se listan al final.
 `size` acepta un token (`s`…`hero`) o px. Todas las palabras se pueden agrupar ("let me", "3D space").

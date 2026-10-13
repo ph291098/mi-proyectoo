@@ -1,0 +1,441 @@
+{
+ "width": 1080,
+ "height": 1920,
+ "font": "Inter Display",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 2.18,
+   "mode": "cloud",
+   "style": "shadow",
+   "fx": [
+    "spotlight"
+   ],
+   "spotlight": {
+    "y": 0.6,
+    "r": 0.44,
+    "zoom": [
+     1.5,
+     1.0
+    ],
+    "zoom_dur": 1.0
+   },
+   "words": [
+    {
+     "text": "la IA",
+     "t": -0.1,
+     "pos": [
+      0.26,
+      0.15
+     ],
+     "size": "xl",
+     "keep_case": true
+    },
+    {
+     "text": "te responde",
+     "t": 0.38,
+     "pos": [
+      0.62,
+      0.22
+     ],
+     "size": "l"
+    },
+    {
+     "text": "cosas",
+     "t": 1.06,
+     "pos": [
+      0.3,
+      0.29
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "genéricas",
+     "t": 1.3,
+     "pos": [
+      0.5,
+      0.385
+     ],
+     "size": "hero",
+     "enter": "focus",
+     "layer": "behind"
+    }
+   ]
+  },
+  {
+   "start": 2.18,
+   "end": 3.055,
+   "mode": "stack",
+   "style": "glow",
+   "words": [
+    {
+     "text": "no es",
+     "t": 2.195,
+     "pos": [
+      0.5,
+      0.15
+     ],
+     "size": "hero"
+    },
+    {
+     "text": "la IA",
+     "t": 2.495,
+     "pos": [
+      0.5,
+      0.33
+     ],
+     "size": "hero",
+     "keep_case": true,
+     "layer": "behind"
+    }
+   ]
+  },
+  {
+   "start": 3.055,
+   "end": 3.988,
+   "mode": "none",
+   "words": []
+  },
+  {
+   "start": 3.988,
+   "end": 5.028,
+   "mode": "stack",
+   "style": "flat",
+   "words": [
+    {
+     "text": "te paso",
+     "t": 4.008,
+     "pos": [
+      0.6,
+      0.12
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "la",
+     "t": 4.348,
+     "pos": [
+      0.12,
+      0.2
+     ],
+     "size": "l"
+    },
+    {
+     "text": "fórmula",
+     "t": 4.468,
+     "pos": [
+      0.55,
+      0.29
+     ],
+     "size": "hero",
+     "layer": "behind"
+    }
+   ]
+  },
+  {
+   "start": 5.028,
+   "end": 6.456,
+   "mode": "stack",
+   "style": "glow",
+   "words": [
+    {
+     "text": "primero",
+     "t": 5.029,
+     "pos": [
+      0.45,
+      0.13
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "dale un",
+     "t": 5.629,
+     "pos": [
+      0.3,
+      0.24
+     ],
+     "size": "l"
+    },
+    {
+     "text": "rol",
+     "t": 5.969,
+     "pos": [
+      0.3,
+      0.36
+     ],
+     "size": "hero"
+    }
+   ]
+  },
+  {
+   "start": 6.456,
+   "end": 8.185,
+   "mode": "none",
+   "words": []
+  },
+  {
+   "start": 8.185,
+   "end": 9.602,
+   "mode": "stack",
+   "style": "glow",
+   "words": [
+    {
+     "text": "después",
+     "t": 8.205,
+     "pos": [
+      0.6,
+      0.13
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "contexto",
+     "t": 8.865,
+     "pos": [
+      0.55,
+      0.29
+     ],
+     "size": "hero",
+     "layer": "behind"
+    }
+   ]
+  },
+  {
+   "start": 9.602,
+   "end": 12.359,
+   "mode": "cloud",
+   "style": "shadow",
+   "fx": [
+    "spotlight"
+   ],
+   "spotlight": {
+    "y": 0.6,
+    "r": 0.44
+   },
+   "words": [
+    {
+     "text": "quién eres",
+     "t": 9.622,
+     "pos": [
+      0.3,
+      0.16
+     ],
+     "size": "l"
+    },
+    {
+     "text": "para quién es",
+     "t": 10.342,
+     "pos": [
+      0.64,
+      0.24
+     ],
+     "size": "l"
+    },
+    {
+     "text": "qué quieres",
+     "t": 11.202,
+     "pos": [
+      0.36,
+      0.305
+     ],
+     "size": "l"
+    },
+    {
+     "text": "lograr",
+     "t": 11.782,
+     "pos": [
+      0.5,
+      0.395
+     ],
+     "size": "xl",
+     "enter": "focus",
+     "layer": "behind"
+    }
+   ]
+  },
+  {
+   "start": 12.359,
+   "end": 14.995,
+   "mode": "swap",
+   "style": "glow",
+   "anchor": [
+    0.5,
+    0.3
+   ],
+   "rot": 7,
+   "skew": -0.12,
+   "words": [
+    {
+     "text": "luego",
+     "t": 12.379,
+     "size": "xl"
+    },
+    {
+     "text": "la tarea",
+     "t": 12.839
+    },
+    {
+     "text": "exacta",
+     "t": 13.219
+    },
+    {
+     "text": "con un ejemplo",
+     "t": 14.139
+    }
+   ]
+  },
+  {
+   "start": 14.995,
+   "end": 16.49,
+   "mode": "stack",
+   "style": "flat",
+   "words": [
+    {
+     "text": "al final",
+     "t": 15.095,
+     "pos": [
+      0.36,
+      0.12
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "el",
+     "t": 15.735,
+     "pos": [
+      0.1,
+      0.2
+     ],
+     "size": "l"
+    },
+    {
+     "text": "formato",
+     "t": 15.775,
+     "pos": [
+      0.45,
+      0.29
+     ],
+     "size": "hero",
+     "layer": "behind"
+    }
+   ]
+  },
+  {
+   "start": 16.49,
+   "end": 18.07,
+   "mode": "stack",
+   "style": "glow",
+   "words": [
+    {
+     "text": "lista",
+     "t": 16.51,
+     "pos": [
+      0.5,
+      0.12
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "tabla",
+     "t": 17.13,
+     "pos": [
+      0.5,
+      0.22
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "o guion",
+     "t": 17.47,
+     "pos": [
+      0.5,
+      0.33
+     ],
+     "size": "xl",
+     "layer": "behind"
+    }
+   ]
+  },
+  {
+   "start": 18.07,
+   "end": 20.898,
+   "mode": "none",
+   "words": []
+  },
+  {
+   "start": 20.898,
+   "end": 22.358,
+   "mode": "stack",
+   "style": "glow",
+   "words": [
+    {
+     "text": "escribe",
+     "t": 20.918,
+     "pos": [
+      0.5,
+      0.1
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "la palabra",
+     "t": 21.178,
+     "pos": [
+      0.5,
+      0.19
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "PROMPT",
+     "t": 21.658,
+     "pos": [
+      0.5,
+      0.32
+     ],
+     "size": "hero",
+     "keep_case": true,
+     "layer": "behind"
+    }
+   ]
+  },
+  {
+   "start": 22.358,
+   "end": 24.195,
+   "mode": "stack",
+   "style": "flat",
+   "words": [
+    {
+     "text": "y te envío",
+     "t": 22.238,
+     "pos": [
+      0.5,
+      0.12
+     ],
+     "size": "xl"
+    },
+    {
+     "text": "mi guía",
+     "t": 22.918,
+     "pos": [
+      0.42,
+      0.26
+     ],
+     "size": "hero"
+    }
+   ],
+   "images": [
+    {
+     "src": "../../.claude/skills/kinetic-reel-edit/assets/guide_icon.png",
+     "t": 22.908,
+     "x": 0.85,
+     "y": 0.255,
+     "w": 0.2,
+     "from": "right",
+     "dur": 0.35,
+     "layer": "front"
+    }
+   ]
+  }
+ ]
+}

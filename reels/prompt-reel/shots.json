@@ -1,0 +1,149 @@
+{
+ "duration": 24.195,
+ "cutouts": {
+  "p1": "recortes/p1.png",
+  "p2": "recortes/p2.png",
+  "p3": "recortes/p3.png",
+  "p4": "recortes/p4.png",
+  "p5": "recortes/p5.png"
+ },
+ "shots": [
+  {
+   "type": "spot",
+   "photo": "p5",
+   "start": 0.0,
+   "end": 2.18
+  },
+  {
+   "type": "cyc",
+   "photo": "p1",
+   "start": 2.18,
+   "end": 3.055
+  },
+  {
+   "type": "ui",
+   "zoom": 1.0,
+   "y": 0.45,
+   "card_w": 1000,
+   "fs": 78,
+   "items": [
+    {
+     "text": "escribe un post sobre marketing",
+     "t": 0.05,
+     "type_cps": 42,
+     "squiggle_t": 0.8
+    }
+   ],
+   "start": 3.055,
+   "end": 3.988
+  },
+  {
+   "type": "red",
+   "photo": "p3",
+   "cx": 0.42,
+   "width": 1.05,
+   "start": 3.988,
+   "end": 5.028
+  },
+  {
+   "type": "cyc",
+   "photo": "p2",
+   "cx": 0.6,
+   "start": 5.028,
+   "end": 6.456
+  },
+  {
+   "type": "ui",
+   "zoom": 1.0,
+   "y": 0.45,
+   "card_w": 1000,
+   "fs": 68,
+   "items": [
+    {
+     "pill": "ROL",
+     "text": "Actúa como experto en marketing de contenido.",
+     "t": 0.05,
+     "type_cps": 34
+    }
+   ],
+   "start": 6.456,
+   "end": 8.185
+  },
+  {
+   "type": "cyc",
+   "photo": "p3",
+   "cx": 0.42,
+   "start": 8.185,
+   "end": 9.602
+  },
+  {
+   "type": "spot",
+   "photo": "p1",
+   "start": 9.602,
+   "end": 12.359
+  },
+  {
+   "type": "sticky",
+   "rot": -9,
+   "start": 12.359,
+   "end": 14.995
+  },
+  {
+   "type": "red",
+   "photo": "p2",
+   "cx": 0.6,
+   "width": 1.05,
+   "start": 14.995,
+   "end": 16.49
+  },
+  {
+   "type": "cyc",
+   "photo": "p1",
+   "start": 16.49,
+   "end": 18.07
+  },
+  {
+   "type": "ui",
+   "zoom": 1.0,
+   "y": 0.5,
+   "items": [
+    {
+     "pill": "ROL",
+     "text": "Actúa como experto en marketing de contenido.",
+     "t": 0.01
+    },
+    {
+     "pill": "CONTEXTO",
+     "text": "Soy coach fitness y quiero más clientes por Instagram.",
+     "t": 0.753
+    },
+    {
+     "pill": "TAREA",
+     "text": "Escribe 5 ideas de reels, con un ejemplo de cada una.",
+     "t": 1.593
+    },
+    {
+     "pill": "FORMATO",
+     "text": "En una tabla: idea, hook y CTA.",
+     "t": 2.193
+    }
+   ],
+   "start": 18.07,
+   "end": 20.898
+  },
+  {
+   "type": "cyc",
+   "photo": "p5",
+   "start": 20.898,
+   "end": 22.358
+  },
+  {
+   "type": "red",
+   "photo": "p4",
+   "width": 1.05,
+   "start": 22.358,
+   "end": 24.195
+  }
+ ],
+ "_about": "Photo-avatar plates. Put your cut-out photos in recortes/ (p1 frente, p2 perfil izq, p3 perfil der, p4 sonrisa, p5 hablando)."
+}

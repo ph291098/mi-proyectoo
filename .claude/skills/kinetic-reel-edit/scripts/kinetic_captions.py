@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Kinetic typography for vertical reels (9:16), in the "spotlight + word cloud" style.
 
-Three subcommands:
+Subcommands:
 
   plan    Build a starter plan.json from word timestamps (+ cut times, or the
           edited video so cuts and background brightness are detected).
+  retime  Move a hand-edited plan onto a new voice-over (new words.json),
+          keeping every manual edit; rebuilds the cut times.
   ass     Write the .ass subtitle files (front / behind layers) for a plan.
   render  Burn the plan onto the edit with ffmpeg: spotlight iris, text behind
           the subject (needs a matte), icon overlays, text in front.
@@ -118,7 +120,9 @@ def probe(video):
     j = json.loads(out)
     st = j["streams"][0]
     num, den = st["r_frame_rate"].split("/")
-    return {"width": int(st["width"]), "height": int(st["height"]),
+    aud = run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries", "stream=index",
+               "-of", "csv=p=0", video], capture=True).stdout.strip()
+    return {"width": int(st["width"]), "height": int(st["height"]), "has_audio": bool(aud),
             "fps": float(num) / float(den), "duration": float(j["format"]["duration"])}
 
 
@@ -351,7 +355,9 @@ def layout_scene(scene, W, H, lowercase=True):
         elif mode == "slide":
             sx, sy, sz = SLIDE_SLOTS[k % len(SLIDE_SLOTS)]
             x, y = sx * W, sy * H
-            size = px_size(w.get("size", sz), W)
+            if "pos" in w:
+                sx = w["pos"][0]
+            size = fit_size(w["text"], W, px_size(w.get("size", sz), W), max(0.3, 0.96 - max(0.0, sx)))
             an = 4
         else:
             continue
@@ -526,6 +532,10 @@ def render(plan, video, out, matte=None, workdir=None, crf=18, preview=False):
             cur = "[tb]"
         chains.append(f"{cur}[fg]overlay=0:0[comp]")
         cur = "[comp]"
+    else:
+        if any(img.get("layer") == "behind" for sc in plan["scenes"] for img in sc.get("images", [])):
+            print("warning: images with layer=behind but no --matte; they render in front", file=sys.stderr)
+        cur, idx = overlay_images(cur, idx, "behind")
     cur, idx = overlay_images(cur, idx, "front")
     if nf:
         chains.append(f"{cur}ass='{esc(fa)}'[tf]")
@@ -535,13 +545,95 @@ def render(plan, video, out, matte=None, workdir=None, crf=18, preview=False):
     graph = ";".join(chains)
     with open(os.path.join(workdir, "filtergraph.txt"), "w") as f:
         f.write(graph.replace(";", ";\n"))
+    audio = ["-map", "0:a", "-c:a", "aac", "-b:a", "192k"] if info["has_audio"] else ["-an"]
     cmd = ["ffmpeg", "-y", "-hide_banner", "-loglevel", "warning", "-stats"] + inputs + [
-        "-filter_complex", graph, "-map", "[vout]", "-map", "0:a?",
+        "-filter_complex", graph, "-map", "[vout]"] + audio + [
         "-c:v", "libx264", "-preset", "veryfast" if preview else "medium",
-        "-crf", str(crf), "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
-        "-movflags", "+faststart", "-t", f"{dur:.3f}", out]
+        "-crf", str(crf), "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-t", f"{dur:.3f}", out]
     run(cmd)
     print(f"wrote {out}  ({nf} front events, {nb} behind events)", file=sys.stderr)
+
+
+# ------------------------------------------------------------------ retime --
+
+def _norm(s):
+    import unicodedata
+    s = unicodedata.normalize("NFKD", s.lower())
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return re.sub(r"[^a-z0-9ñ]+", "", s)
+
+
+def retime(plan, words, lead=0.1, cut_lead=0.12, tail=0.6, window=14):
+    """Move a hand-edited plan onto a new voice-over, keeping every edit.
+
+    Each plan word is matched, in order, to the transcript by its first token (or by its
+    "say" field when the on-screen text differs from what is spoken, e.g. "24" / "veinticuatro").
+    A scene's "say" anchors a scene without words. Scene cuts are rebuilt from the matched
+    words (cut_lead before the first word); unmatched scenes are interpolated.
+    """
+    spoken = [_norm(w["text"]) for w in words]
+    ptr, misses = 0, []
+
+    def find(token):
+        nonlocal ptr
+        tok = _norm(token.split()[0]) if token.split() else ""
+        for j in range(ptr, min(len(words), ptr + window)):
+            if spoken[j] == tok or (len(tok) > 3 and spoken[j].startswith(tok[:4])):
+                ptr = j + 1
+                return j
+        return None
+
+    anchors = []  # per scene: index of first matched transcript word
+    for sc in plan["scenes"]:
+        first = None
+        if sc.get("say"):
+            first = find(sc["say"])
+        for w in sc.get("words", []):
+            j = find(w.get("say", w["text"]))
+            if j is None:
+                misses.append(w["text"])
+                w["_unmatched"] = True
+                continue
+            w.pop("_unmatched", None)
+            w["t"] = round(words[j]["start"] - lead, 3)
+            first = j if first is None else min(first, j)
+        anchors.append(first)
+
+    old = [(sc["start"], sc["end"]) for sc in plan["scenes"]]
+    old_total = old[-1][1] if old else 1.0
+    new_total = words[-1]["end"] + tail if words else old_total
+    starts = []
+    for i, a in enumerate(anchors):
+        if i == 0:
+            starts.append(0.0)
+        elif a is not None:
+            prev_end = words[a - 1]["end"] + 0.02 if a > 0 else 0.0
+            starts.append(round(max(prev_end, words[a]["start"] - cut_lead), 3))
+        else:
+            starts.append(None)
+    # interpolate scenes without an anchor between their anchored neighbours
+    for i, s in enumerate(starts):
+        if s is not None:
+            continue
+        lo = max(k for k in range(i) if starts[k] is not None)
+        hi = next((k for k in range(i + 1, len(starts)) if starts[k] is not None), None)
+        o_lo, o_hi = old[lo][0], (old[hi][0] if hi is not None else old_total)
+        n_lo, n_hi = starts[lo], (starts[hi] if hi is not None else new_total)
+        f = (old[i][0] - o_lo) / max(1e-6, o_hi - o_lo)
+        starts[i] = round(n_lo + f * (n_hi - n_lo), 3)
+    for i, sc in enumerate(plan["scenes"]):
+        o0 = old[i][0]
+        sc["start"] = starts[i]
+        sc["end"] = starts[i + 1] if i + 1 < len(starts) else round(new_total, 3)
+        for w in sc.get("words", []):
+            if w.get("_unmatched"):   # keep its offset inside the scene
+                w["t"] = round(min(sc["end"] - 0.1, sc["start"] + max(0.0, w["t"] - o0)), 3)
+            w["t"] = max(sc["start"], w["t"])
+        for img in sc.get("images", []):
+            if "t" in img:
+                img["t"] = round(min(sc["end"] - 0.1, sc["start"] + max(0.0, img["t"] - o0)), 3)
+            img.pop("end", None)
+    return plan, misses
 
 
 # --------------------------------------------------------------------- CLI --
@@ -558,6 +650,16 @@ def load_plan(path):
         for w in sc.get("words", []):
             if w.get("enter", "pop") not in ENTERS:
                 die(f"word {w.get('text')!r}: unknown enter {w['enter']!r} (use {ENTERS})")
+            # a word may start a little before its scene (lead): it is clamped to the cut
+            if not sc["start"] - 0.3 <= float(w.get("t", sc["start"])) < sc["end"]:
+                print(f"warning: word {w.get('text')!r} at t={w.get('t')} is outside its scene "
+                      f"({sc['start']}-{sc['end']}); it is clamped or dropped", file=sys.stderr)
+        for img in sc.get("images", []):
+            src = img.get("src", "")
+            if not os.path.isabs(src):
+                src = os.path.join(plan["_dir"], src)
+            if not os.path.exists(src):
+                die(f"scene at {sc.get('start')}: image not found: {src}")
     return plan
 
 
@@ -574,6 +676,13 @@ def main():
     p.add_argument("--lead", type=float, default=0.1,
                    help="show each word this many seconds before it is spoken (default 0.1)")
     p.add_argument("--out", default="plan.json")
+
+    t = sub.add_parser("retime", help="move a hand-edited plan onto a new voice-over (keeps edits)")
+    t.add_argument("--plan", required=True)
+    t.add_argument("--words", required=True, help="word timestamps JSON of the new voice-over")
+    t.add_argument("--lead", type=float, default=0.1)
+    t.add_argument("--cut-lead", type=float, default=0.12, help="cut this long before a scene's first word")
+    t.add_argument("--out", required=True)
 
     a = sub.add_parser("ass", help="write front.ass / behind.ass")
     a.add_argument("--plan", required=True)
@@ -608,6 +717,16 @@ def main():
         with open(args.out, "w", encoding="utf-8") as f:
             json.dump(plan, f, ensure_ascii=False, indent=2)
         print(f"wrote {args.out}: {len(plan['scenes'])} scenes, {len(words)} words", file=sys.stderr)
+    elif args.cmd == "retime":
+        plan = load_plan(args.plan)
+        plan.pop("_dir", None)
+        plan, misses = retime(plan, load_words(args.words), args.lead, args.cut_lead)
+        with open(args.out, "w", encoding="utf-8") as f:
+            json.dump(plan, f, ensure_ascii=False, indent=2)
+        print(f"wrote {args.out}: {len(plan['scenes'])} scenes", file=sys.stderr)
+        if misses:
+            print("unmatched (kept their offset in the scene; add \"say\" to anchor them): "
+                  + ", ".join(misses), file=sys.stderr)
     elif args.cmd == "ass":
         plan = load_plan(args.plan)
         os.makedirs(args.out_dir, exist_ok=True)
