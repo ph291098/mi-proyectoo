@@ -15,6 +15,9 @@
   (estilos guardados en `estilos/`, plantilla Remotion en `plantilla/`).
 - `.claude/skills/kinetic-reel-edit/`: estilo fijo «spotlight + tipografía cinética» con Python + ffmpeg (sin Remotion).
 - Coolvetica tiene licencia de escritorio: nunca se sube al repo (solo su ruta local).
+- Plugins de After Effects (Mac) que tiene Pablo: Deep Glow 2, Thicc Stroke, TextBorder y QCA 3
+  (Plugin Everything) y FX Console (Video Copilot). Cuándo usar cada uno:
+  `.claude/skills/kinetic-reel-edit/references/editor-recipes.md`. Tienen licencia: nunca se suben al repo.
 
 ## Moodboards de vídeo
 

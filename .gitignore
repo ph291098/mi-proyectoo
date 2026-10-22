@@ -4,3 +4,7 @@ __pycache__/
 # fuentes con licencia de escritorio: nunca al repo
 *.otf
 **/Coolvetica*
+
+# plugins de After Effects con licencia (Deep Glow, Thicc Stroke...): nunca al repo
+*.plugin/
+*.aex

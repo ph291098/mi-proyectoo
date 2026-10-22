@@ -43,6 +43,31 @@ Los valores salen de `typography-and-motion.md`.
 - Ícono: shape layer blanco, Position desde fuera de cuadro con easing "Ease Out Cubic", 8 frames.
 - Para ahorrar tiempo: importa `front.ass` como referencia de tiempos (`python kinetic_captions.py ass --plan plan.json`).
 
+### Con los plugins de Pablo (Mac, instalados en su After Effects)
+
+Tiene estos cinco plugins. Si edita en After Effects, úsalos en lugar de los efectos nativos equivalentes.
+Los valores son un punto de partida. Los nombres exactos de los parámetros pueden cambiar según la versión.
+
+| Plugin | Fabricante | Para qué en este estilo | Sustituye a |
+|---|---|---|---|
+| **Deep Glow 2** | Plugin Everything | Glow azul de las palabras sobre fondo claro | Outer Glow de Layer Styles |
+| **Thicc Stroke** | Plugin Everything | Contorno azul limpio y grueso del texto, sin picos en las esquinas | Stroke de Layer Styles |
+| **TextBorder** | Plugin Everything | Caja redondeada detrás del texto (subtítulo en bloque blanco de reel-edicion) | Shape layer a mano |
+| **QCA 3** (Quick Chromatic Aberration) | Plugin Everything | Aberración cromática sutil en planos de producto o en whips | Desplazar canales a mano |
+| **FX Console** | Video Copilot | Buscar y aplicar efectos con atajo de teclado, y capturar fotogramas | Panel Effects & Presets |
+
+- **Glow con Deep Glow 2 (fondos claros):** encima de Thicc Stroke. Tinte `#90A0C0`, radio medio (≈ 80–120),
+  exposición baja (≈ 0,3–0,6) y umbral bajo para que brille el texto y no el fondo. Compara con la referencia:
+  el glow debe leerse como halo suave, nunca como neón.
+- **Contorno con Thicc Stroke:** color `#4070B0`, grosor ≈ 4 px a 1080×1920, uniones redondeadas.
+  Aplícalo antes de Deep Glow en la pila de efectos.
+- **Bloque de subtítulo con TextBorder:** relleno blanco, esquinas redondeadas, padding ≈ 0,4 em.
+  Es la forma rápida de replicar en After Effects el subtítulo en bloque blanco del estilo de marca.
+- **QCA 3:** cantidad muy baja y en modo radial, solo en planos puntuales. Nunca en todo el reel.
+- **FX Console:** sirve para aplicar el preset "pop" y los efectos de arriba con búsqueda rápida.
+  No afecta al render.
+- Los plugins tienen licencia por máquina: sus binarios (`*.plugin`) nunca se suben al repo.
+
 ## Premiere Pro
 
 - Secuencia 1080×1920 24p. Texto con Essential Graphics (Inter Display Bold, tracking -20).
