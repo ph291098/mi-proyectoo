@@ -4,3 +4,6 @@ __pycache__/
 # fuentes con licencia de escritorio: nunca al repo
 *.otf
 **/Coolvetica*
+
+# ejecuciones de la skill arena (soluciones, ataques y veredictos de cada torneo)
+.arena/

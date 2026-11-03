@@ -14,6 +14,9 @@
 - `.claude/skills/reel-referencia/`: skill para editar copiando el estilo de un vídeo de referencia
   (estilos guardados en `estilos/`, plantilla Remotion en `plantilla/`).
 - `.claude/skills/kinetic-reel-edit/`: estilo fijo «spotlight + tipografía cinética» con Python + ffmpeg (sin Remotion).
+- `.claude/skills/arena/`: `/arena`, torneo de sub-agentes (del repo Jakeschincariol/arena-skill, MIT).
+  Por defecto lanza 100 agentes y 595 llamadas: usa `--quick` (16 agentes, 91 llamadas) salvo que pida
+  el torneo completo. Sus ejecuciones van a `.arena/` (ignorada en git).
 - Coolvetica tiene licencia de escritorio: nunca se sube al repo (solo su ruta local).
 
 ## Moodboards de vídeo
