@@ -4,3 +4,6 @@ __pycache__/
 # fuentes con licencia de escritorio: nunca al repo
 *.otf
 **/Coolvetica*
+
+# /brag: intermedios (capturas de la web, fuente Satoshi, fotogramas)
+brag-output*/work/
