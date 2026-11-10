@@ -7,3 +7,6 @@ __pycache__/
 
 # /brag: intermedios (capturas de la web, fuente Satoshi, fotogramas)
 brag-output*/work/
+
+# vídeo explicativo de Valto: intermedios (tomas de voz, fotogramas, segmentos)
+valto-explicativo/work/

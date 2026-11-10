@@ -1,0 +1,103 @@
+1
+00:00:01,500 --> 00:00:02,850
+Tu negocio cierra.
+
+2
+00:00:03,240 --> 00:00:04,500
+Tu agente, no.
+
+3
+00:00:05,900 --> 00:00:07,600
+Cada mensaje sin responder
+
+4
+00:00:07,600 --> 00:00:09,500
+es una venta que se enfría.
+
+5
+00:00:09,800 --> 00:00:12,140
+Valto es un agente de inteligencia artificial
+
+6
+00:00:12,140 --> 00:00:14,200
+que contesta, agenda,
+
+7
+00:00:14,200 --> 00:00:15,940
+cotiza y toma pedidos,
+
+8
+00:00:15,940 --> 00:00:17,380
+las 24 horas,
+
+9
+00:00:17,380 --> 00:00:19,100
+en WhatsApp y en tu web.
+
+10
+00:00:19,500 --> 00:00:21,700
+Uno: conecta tu negocio.
+
+11
+00:00:21,800 --> 00:00:24,150
+Tu web, catálogo o Google Sheet.
+
+12
+00:00:24,280 --> 00:00:27,100
+Valto aprende tus precios y horarios en minutos.
+
+13
+00:00:27,800 --> 00:00:30,600
+Dos: elige qué hace tu agente.
+
+14
+00:00:30,880 --> 00:00:32,950
+Agenda citas sin duplicar horarios,
+
+15
+00:00:33,260 --> 00:00:35,200
+cobra con tus precios reales,
+
+16
+00:00:35,320 --> 00:00:36,950
+cotiza al instante.
+
+17
+00:00:37,400 --> 00:00:40,300
+Tres: conecta WhatsApp o el chat de tu web.
+
+18
+00:00:40,580 --> 00:00:42,300
+Listo para atender en minutos.
+
+19
+00:00:45,200 --> 00:00:46,640
+Mientras tú trabajas,
+
+20
+00:00:46,740 --> 00:00:48,180
+tu agente cierra la venta
+
+21
+00:00:48,180 --> 00:00:49,800
+y te deja todo anotado.
+
+22
+00:00:50,600 --> 00:00:51,300
+Valto.
+
+23
+00:00:51,460 --> 00:00:52,750
+Tu negocio cierra.
+
+24
+00:00:53,020 --> 00:00:54,100
+Tu agente, no.
+
+25
+00:00:54,460 --> 00:00:56,860
+Prueba la demo gratis, sin tarjeta,
+
+26
+00:00:56,920 --> 00:00:58,750
+en getvalto.ai

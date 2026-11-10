@@ -17,6 +17,9 @@
 - `.claude/skills/brag/` y `.claude/skills/brag-slim/`: `/brag`, convierte un proyecto o una web en un vídeo
   de lanzamiento de ~20 s con música y texto para compartir (de github.com/latent-spaces/brag, MIT; música
   CC BY 4.0 de Sascha Ende, SFX CC0 de Kenney). En Opus 5.5, `/brag` pasa a `brag-slim` salvo con `--full`.
+- `valto-explicativo/`: vídeo explicativo de GetValto.ai (59 s, vertical y horizontal) con su guion (`guion.md`),
+  subtítulos `.srt` y la composición re-renderizable en `src/` (HTML + scripts de audio y render).
+- `brag-output/`: reel de 15 s de Valto hecho con `/brag`.
 - Coolvetica tiene licencia de escritorio: nunca se sube al repo (solo su ruta local).
 
 ## Moodboards de vídeo
