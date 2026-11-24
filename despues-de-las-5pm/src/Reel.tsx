@@ -8,7 +8,7 @@ import { Plan } from "./beats/Plan";
 import { Captions } from "./componentes/Captions";
 import { Cuarto } from "./componentes/Cuarto";
 import { Grano, Precarga } from "./componentes/Grano";
-import "./fuentes";
+import { useFuentes } from "./fuentes";
 import { camaraEn, FPS, horaReloj, T } from "./tiempos";
 import { ei, eio, eo, golpe, prog, resorte, temblor } from "./util";
 
@@ -17,6 +17,7 @@ export type PropsReel = { voz: boolean };
 export const Reel: React.FC<PropsReel> = ({ voz }) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
+  useFuentes();
 
   const enCuarto = t < T.grafica || (t >= T.plan && t < T.cta);
   const enCelular = t >= T.celular && t < T.grafica;
