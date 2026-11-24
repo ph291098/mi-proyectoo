@@ -14,7 +14,7 @@ const p = (t: string, a: number, acento = false): Palabra => ({ t, a, acento });
 
 export const CAPTIONS: Caption[] = [
   // 1 · gancho — «sé que estás agotado.» ya está en pantalla desde el frame 0 (ver beats/Gancho.tsx)
-  { estilo: "sans", y: 1320, hasta: 3.95, lineas: [[p("son", 2.9), p("las", 3.0), p("5:00", 3.2, true)]] },
+  { estilo: "sans", y: 1320, hasta: 3.56, lineas: [[p("son", 2.9), p("las", 3.0), p("5:00", 3.2, true)]] },
   { estilo: "sans", y: 1320, hasta: 4.75, lineas: [[p("y", 3.58), p("quieres", 4.02)], [p("construir", 4.3)]] },
   { estilo: "sans", y: 1320, hasta: 5.95, lineas: [[p("algo", 4.8), p("con", 5.08), p("ia.", 5.4, true)]] },
   // 2 · celular

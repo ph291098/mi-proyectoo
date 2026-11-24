@@ -87,7 +87,7 @@ const T_AVISOS = [9.0, 9.75, 10.5, 11.25, 12.0, 12.375, 12.75, 13.125, 13.5, 13.
 const Aviso: React.FC<{ i: number; t: number }> = ({ i, t }) => {
   const t0 = T_AVISOS[i];
   if (t < t0) return null;
-  const s = resorte(t, t0, 15, 0.5);
+  const s = resorte(t, t0, 15, 0.86);          // casi sin rebote: al caer no debe invadir la zona inferior
   const x = 96 + ruido(i * 3.1) * 190;
   // hasta que llega «y sientes que vas tarde.» dejan libre la franja del texto de las tarjetas
   const y = i < 5 ? 400 + i * 106 : i < 9 ? 1196 + (i - 5) * 62 : 420 + ruido(i * 7.7) * 760;

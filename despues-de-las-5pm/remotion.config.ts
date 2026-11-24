@@ -12,7 +12,7 @@ Config.setOverwriteOutput(true);
 Config.setDelayRenderTimeoutInMilliseconds(120000);
 Config.setConcurrency(1); // con más pestañas, el headless shell de Playwright deja una colgada esperando las fuentes
 Config.setCodec("h264");
-Config.setCrf(17);
+Config.setCrf(23);
 Config.setPixelFormat("yuv420p");
 Config.setColorSpace("bt709");
 Config.setAudioCodec("aac");

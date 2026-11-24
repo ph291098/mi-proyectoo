@@ -20,6 +20,9 @@
 - `valto-explicativo/`: vídeo explicativo de GetValto.ai (59 s, vertical y horizontal) con su guion (`guion.md`),
   subtítulos `.srt` y la composición re-renderizable en `src/` (HTML + scripts de audio y render).
 - `brag-output/`: reel de 15 s de Valto hecho con `/brag`.
+- `despues-de-las-5pm/`: reel vertical de 32 s (Remotion) que vende el ebook «Después de las 5 PM»: ilustración
+  por capas en `public/arte/`, texto en `src/contenido.ts`, audio sintetizado con `scripts/audio.py`, renders en `out/`.
+  Los 5 pasos del checklist y la portada del ebook son provisionales hasta tener los reales.
 - Coolvetica tiene licencia de escritorio: nunca se sube al repo (solo su ruta local).
 
 ## Moodboards de vídeo
