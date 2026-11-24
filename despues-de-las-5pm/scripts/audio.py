@@ -197,7 +197,7 @@ fx(boom(2.2, 36, 1.9), 18.75, 1.0); fx(thud(.35), 18.75, .8); fx(click(), 18.75,
 # 4 · plan: la laptop se abre, checklist
 fx(click(), 20.4, .45, 0); fx(click(), 20.52, .3, 0)
 fx(whoosh(.9, .6, 250, 2500), 20.4, .3)
-for i, t0 in enumerate([22.9, 23.4, 23.9, 24.4, 24.9]):
+for i, t0 in enumerate([22.75, 23.25, 23.75, 24.25, 24.75]):
     fx(pop(480 + i * 45), t0, .26, -.2); fx(bell(note(['D5', 'F5', 'A5', 'C6', 'D6'][i]), .5, 7), t0 + .05, .08, -.2, rev=.7)
 # 5 · portada: aparición, barrido de luz, golpe final
 fx(whoosh(.4, .3, 300, 6000), 25.2, .5)

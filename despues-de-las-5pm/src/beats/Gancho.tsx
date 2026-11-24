@@ -46,7 +46,7 @@ export const Gancho: React.FC<{ t: number; cam: Camara }> = ({ t, cam }) => {
   if (t < T.abierto) {
     const s = resorte(t, T.agotado, 17, 0.42);
     return (
-      <div style={{ position: "absolute", left: 70, width: 860, top: 1330, transform: `translateY(-50%) scale(${1.9 - 0.9 * s})`, textAlign: "center", fontFamily: SERIF, fontStyle: "italic", fontWeight: 900, fontSize: 164, lineHeight: 1, letterSpacing: "-0.02em", color: C.naranja, textShadow: SOMBRA }}>
+      <div style={{ position: "absolute", left: 70, width: 860, top: 1330, transform: `translateY(-50%) scale(${1.32 - 0.32 * s})`, textAlign: "center", fontFamily: SERIF, fontStyle: "italic", fontWeight: 900, fontSize: 164, lineHeight: 1, letterSpacing: "-0.02em", color: C.naranja, textShadow: SOMBRA }}>
         agotado.
       </div>
     );

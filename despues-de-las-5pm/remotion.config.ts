@@ -10,7 +10,7 @@ Config.setVideoImageFormat("jpeg");
 Config.setJpegQuality(95);
 Config.setOverwriteOutput(true);
 Config.setDelayRenderTimeoutInMilliseconds(120000);
-Config.setConcurrency(2);
+Config.setConcurrency(1); // con más pestañas, el headless shell de Playwright deja una colgada esperando las fuentes
 Config.setCodec("h264");
 Config.setCrf(17);
 Config.setPixelFormat("yuv420p");

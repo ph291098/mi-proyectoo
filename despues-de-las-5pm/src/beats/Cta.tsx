@@ -21,8 +21,8 @@ export const Cta: React.FC<{ t: number }> = ({ t }) => {
       <AbsoluteFill style={{ transform: `scale(${zoom})`, transformOrigin: "50% 40%" }}>
         {/* luz cálida de la lámpara detrás del libro */}
         <AbsoluteFill style={{ background: "radial-gradient(ellipse 70% 42% at 46% 37%, rgba(255,106,26,.34) 0%, rgba(255,106,26,.09) 48%, rgba(255,106,26,0) 76%)", opacity: (0.75 + 0.25 * Math.min(1, entra)) * fl + golpe(t, T.final, 0.5, 3) }} />
-        <Img src={staticFile("arte/lampara.webp")} style={{ position: "absolute", left: -70, top: 1130, width: 400, filter: `brightness(${0.8 + 0.1 * fl})`, opacity: Math.min(1, entra * 1.5) }} />
-        <div style={{ position: "absolute", left: -10, top: 1140, width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,190,120,.55) 0%, rgba(255,106,26,.22) 30%, rgba(255,106,26,0) 64%)", mixBlendMode: "screen", opacity: fl * Math.min(1, entra) }} />
+        <Img src={staticFile("arte/lampara.webp")} style={{ position: "absolute", left: -150, top: 1290, width: 400, filter: `brightness(${0.8 + 0.1 * fl})`, opacity: Math.min(1, entra * 1.5) }} />
+        <div style={{ position: "absolute", left: -90, top: 1300, width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,190,120,.55) 0%, rgba(255,106,26,.22) 30%, rgba(255,106,26,0) 64%)", mixBlendMode: "screen", opacity: fl * Math.min(1, entra) }} />
 
         {/* libro */}
         <div style={{ position: "absolute", left: 540 - LIBRO.w / 2 + 14, top: 300, width: LIBRO.w, height: LIBRO.h, perspective: 2000, transform: `translateY(${(1 - Math.min(1, entra)) * 140 + Math.sin(t * 1.3) * 6}px) scale(${0.72 + 0.28 * entra})`, opacity: Math.min(1, prog(t, T.cta, T.cta + 0.2)) }}>

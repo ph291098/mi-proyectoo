@@ -3,12 +3,12 @@ import { PASOS } from "../contenido";
 import { C, SANS } from "../fuentes";
 import { prog, resorte } from "../util";
 
-export const T_PASOS = [22.9, 23.4, 23.9, 24.4, 24.9];
+export const T_PASOS = [22.75, 23.25, 23.75, 24.25, 24.75];
 
 /** Beat 4: el checklist de 5 pasos aparece uno por uno sobre la pared, a la izquierda del reloj. */
 export const Plan: React.FC<{ t: number }> = ({ t }) => (
   <div style={{ position: "absolute", left: 76, top: 168, width: 580, fontFamily: SANS }}>
-    <div style={{ fontWeight: 600, fontSize: 28, letterSpacing: "0.2em", color: C.laton, marginBottom: 20, opacity: prog(t, 22.6, 22.9), textShadow: "0 2px 12px rgba(0,0,0,.9)" }}>el plan para tu hora</div>
+    <div style={{ fontWeight: 600, fontSize: 28, letterSpacing: "0.2em", color: C.laton, marginBottom: 20, opacity: prog(t, 22.45, 22.75), textShadow: "0 2px 12px rgba(0,0,0,.9)" }}>el plan para tu hora</div>
     {PASOS.map((paso, i) => {
       const s = resorte(t, T_PASOS[i], 17, 0.5);
       const marca = prog(t, T_PASOS[i] + 0.12, T_PASOS[i] + 0.34);

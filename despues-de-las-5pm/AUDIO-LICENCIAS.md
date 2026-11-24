@@ -39,7 +39,7 @@ Todos sintetizados en `scripts/audio.py`. Tiempos en segundos del vídeo.
 | Bass hit del sello «1 HORA» | 18,75 | Boom largo + golpe + clic |
 | Clic de la laptop | 20,40 y 20,52 | Seno corto + ruido agudo |
 | Aire al abrirse la laptop | 20,40 – 21,30 | Ruido filtrado suave |
-| Pop + campanita por paso del checklist | 22,90 · 23,40 · 23,90 · 24,40 · 24,90 | Seno con barrido + campana, subiendo de nota |
+| Pop + campanita por paso del checklist | 22,75 · 23,25 · 23,75 · 24,25 · 24,75 | Seno con barrido + campana, subiendo de nota |
 | Golpe al aparecer la portada | 25,50 | Boom |
 | Shimmer y barrido de luz | 25,70 – 27,40 | Campanitas agudas aleatorias + ruido agudo |
 | Pops de texto | 27,95 y 29,80 | Seno con barrido |
