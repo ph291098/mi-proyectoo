@@ -36,6 +36,7 @@ export const useFuentes = () => {
 
 export const SERIF = '"Playfair Display", Georgia, serif';
 export const SANS = '"Inter", system-ui, sans-serif';
+export const MANO = '"Caveat", cursive';
 
 export const C = {
   negro: "#070504",

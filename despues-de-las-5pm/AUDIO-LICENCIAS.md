@@ -57,3 +57,19 @@ Todos sintetizados en `scripts/audio.py`. Tiempos en segundos del vídeo.
   distribuir, también comercialmente).
 - Ilustración: generada con Higgsfield (GPT Image 2.6) desde tu cuenta. Revisa los términos de tu plan
   para uso comercial.
+
+## Episodio 2 («hora 2 · elige una sola cosa»)
+
+Mismo criterio: música y efectos sintetizados, ahora con `scripts/audio_ep2.py` sobre el módulo compartido
+`scripts/sinte.py`. Sin samples ni música de terceros.
+
+- **Voz guía**: ElevenLabs, «Axel - Voz Cálida», modelo `eleven_v4`, generada con tu cuenta. Va acelerada
+  un 6 % y recolocada por frases. Es temporal.
+- **Música**: la misma base lo-fi a 80 BPM en re menor, con otra estructura (20,5 s).
+- **Efectos** (segundos): tic-tac 0–1,5 · golpe en «pierdes» 2,25 · clic de laptop 3,00 · pop por cada
+  pestaña 4,07–8,05 (cada vez más juntos) · tic-tac acelerado 4,0–8,1 · riser 6,95–8,25 · golpe de
+  «se acabó» 8,25 · golpe en «sentado» 11,25 · golpe de «paso 1» 12,00 · whoosh de las pestañas al juntarse
+  12,70 · pop de la nota 13,38 · roce de bolígrafo 15,5–16,7 · tics de progreso 17,0–17,8 · aviso de «hecho»
+  y shimmer 18,00 · pop 19,25 · golpe final 19,50.
+- **Mezcla**: −14 LUFS integrados con `scripts/normaliza.sh`.
+- **Tipografía añadida**: Caveat (letra a mano de la nota), licencia SIL Open Font License 1.1.

@@ -2,6 +2,7 @@ import React from "react";
 import { Img, staticFile } from "remotion";
 import { ALTO, ANCHO, CAM0, Camara } from "../tiempos";
 import { lerp, ruido, ruidoSuave } from "../util";
+import poses from "../data/poses.json";
 import { Reloj } from "./Reloj";
 
 // Tamaño del cuarto en unidades de mundo (la ilustración maestra a 1080 px de ancho).
@@ -51,12 +52,18 @@ export type EstadoCuarto = {
   tapa: number;         // 0 laptop cerrada · 1 abierta
   luz: number;          // 0..1 luz de la pantalla en la cara
   aviso: number;        // 0..1 el celular de la mesa encendido
+  pose?: Pose;          // qué ilustración del personaje se ve (por defecto, la del capítulo 1)
+  brillo?: number;      // 0..1 intensidad de la lámpara (1 = normal)
 };
+
+// Poses del personaje. Entre poses distintas solo se cambia con corte seco: nunca morph ni crossfade.
+export type Pose = "cansado" | "mirando" | "agobiado" | "aliviado";
 
 const fondo: React.CSSProperties = { position: "absolute", left: -16, top: -28, width: 1112, height: 1966.5 };
 
-export const Cuarto: React.FC<EstadoCuarto> = ({ cam, t, minutos, aTics, tapa, luz, aviso }) => {
-  const fl = parpadeo(t);
+export const Cuarto: React.FC<EstadoCuarto> = ({ cam, t, minutos, aTics, tapa, luz, aviso, pose = "cansado", brillo = 1 }) => {
+  const fl = parpadeo(t) * brillo;
+  const otra = pose === "cansado" ? null : poses[pose];
   const { personaje: pj, lampara, laptop, tapa: tp, taza, celular, reloj, halo } = POS;
   const hPj = pj.w * (1796 / 1800);
   const angulo = lerp(86, 4, tapa);
@@ -81,9 +88,13 @@ export const Cuarto: React.FC<EstadoCuarto> = ({ cam, t, minutos, aTics, tapa, l
 
       {/* personaje: siempre la misma ilustración */}
       <Capa cam={cam} p={1.05}>
-        <Img src={staticFile("arte/personaje.webp")} style={{ position: "absolute", left: pj.x, top: pj.y, width: pj.w, height: hPj, transformOrigin: "50% 100%", transform: respira }} />
+        {otra ? (
+          <Img src={staticFile(`arte/pose_${pose}.webp`)} style={{ position: "absolute", left: otra.x, top: otra.y, width: otra.w, height: otra.h, transformOrigin: "50% 100%", transform: respira }} />
+        ) : (
+          <Img src={staticFile("arte/personaje.webp")} style={{ position: "absolute", left: pj.x, top: pj.y, width: pj.w, height: hPj, transformOrigin: "50% 100%", transform: respira }} />
+        )}
         {/* luz de la pantalla sobre cara y pecho: un velo claro recortado con la silueta del personaje */}
-        {luz > 0.001 ? (
+        {luz > 0.001 && !otra ? (
           <div
             style={{
               position: "absolute", left: pj.x, top: pj.y, width: pj.w, height: hPj, background: "#FFE9CF", mixBlendMode: "soft-light", opacity: luz, transformOrigin: "50% 100%", transform: respira,

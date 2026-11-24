@@ -30,7 +30,7 @@ export const SEGURO = { xMax: ANCHO * 0.88, yMax: ALTO * 0.8, xMin: 70, yMin: 15
 export type Camara = { x: number; y: number; z: number };
 export const CAM0: Camara = { x: 540, y: 955, z: 1 };
 
-type Toma = { a: number; b: number; de: Camara; hasta: Camara; curva?: (x: number) => number };
+export type Toma = { a: number; b: number; de: Camara; hasta: Camara; curva?: (x: number) => number };
 // Cada toma tiene un dolly-in lento; entre tomas hay corte seco, whip o dip a negro.
 const TOMAS: Toma[] = [
   { a: 0, b: T.agotado, de: { x: 750, y: 520, z: 2.2 }, hasta: { x: 753, y: 514, z: 2.4 } },               // reloj
@@ -41,11 +41,14 @@ const TOMAS: Toma[] = [
   { a: T.plan, b: T.cta, de: { x: 541, y: 1020, z: 1.12 }, hasta: { x: 541, y: 1036, z: 1.22 } },           // el plan
 ];
 
-export const camaraEn = (t: number): Camara => {
-  const toma = TOMAS.find((s) => t >= s.a && t < s.b) ?? TOMAS[TOMAS.length - 1];
+/** Cámara en el instante t para una lista de tomas (cada episodio tiene la suya). */
+export const camaraDeTomas = (tomas: Toma[], t: number): Camara => {
+  const toma = tomas.find((s) => t >= s.a && t < s.b) ?? tomas[tomas.length - 1];
   const p = (toma.curva ?? ((x: number) => lerp(x, eio(x), 0.35)))(prog(t, toma.a, toma.b));
   return { x: lerp(toma.de.x, toma.hasta.x, p), y: lerp(toma.de.y, toma.hasta.y, p), z: lerp(toma.de.z, toma.hasta.z, p) };
 };
+
+export const camaraEn = (t: number): Camara => camaraDeTomas(TOMAS, t);
 
 /** Hora que marca el reloj (en minutos desde las 0:00, con decimales). 4:58 → 5:00 en los 3 primeros segundos. */
 export const horaReloj = (t: number) => {

@@ -37,9 +37,9 @@ export const BloqueCaption: React.FC<{ c: Caption }> = ({ c }) => {
   );
 };
 
-export const Captions: React.FC = () => {
+export const Captions: React.FC<{ lista?: Caption[] }> = ({ lista = CAPTIONS }) => {
   const t = useCurrentFrame() / FPS;
-  const activos = CAPTIONS.filter((c) => t >= c.lineas[0][0].a - 0.001 && t < c.hasta);
+  const activos = lista.filter((c) => t >= c.lineas[0][0].a - 0.001 && t < c.hasta);
   return (
     <>
       {activos.map((c, i) => (

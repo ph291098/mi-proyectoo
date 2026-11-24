@@ -56,3 +56,14 @@ sello «1 HORA», etc.) siguen cayendo en su sitio sin tocar `src/tiempos.ts`.
 - **Los 5 pasos del checklist** (`PASOS` en `src/contenido.ts`): los escribí yo, no salen del ebook.
 - **La portada del ebook**: es tipográfica, hecha en código. Si tienes la real, pon el archivo en `public/`
   y escribe su nombre en `EBOOK.portadaReal`.
+
+## Episodio 2 · «hora 2: elige una sola cosa» (20,5 s)
+
+Segundo capítulo de la serie. Reutiliza el cuarto y añade tres poses del mismo personaje
+(`public/arte/pose_*.webp`: mirando, agobiado, aliviado), que solo cambian en cortes de cámara.
+
+- Código: `src/ep2/Episodio2.tsx`; texto y tiempos: `src/ep2/contenido.ts`.
+- Audio: `scripts/audio_ep2.py` (usa `scripts/sinte.py`).
+- Render: `npx remotion render Ep2ConVoz out/ep2/hora-2-con-voz.mp4` (también `Ep2SinVoz` y el still `Ep2Portada`).
+- Fotogramas sueltos: `COMP=Ep2ConVoz node scripts/fotos.mjs carpeta 3.2 8.3`.
+- **Provisional**: el paso 1 («elige una sola cosa») y el ejemplo de la nota los escribí yo, no salen del ebook.
