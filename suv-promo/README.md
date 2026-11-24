@@ -13,6 +13,7 @@ de referencia que aportó Pablo.
 | `out/suv-nieve-1080p-con-cierre.mp4` | El mismo con el rótulo de cierre («Hecho para el invierno.» + «pieza de muestra · no oficial · @soypablo.ai»). El rótulo se cambia con `scripts/cierre.py`. |
 | `out/animacion-blender.mp4` | La animación renderizada en Blender (Cycles por CPU, a 960×540): es la previsualización 3D, no el acabado final. |
 | `out/portada.jpg` | Fotograma de portada. |
+| `out/hiperrealista/` | Tres fotogramas clave hiperrealistas (2688×1520) hechos con GPT Image 2.6 a partir de las referencias: frontal, lateral y trasera. Son la base para rehacer el vídeo con acabado de rodaje real. |
 | `scripts/escena.py` | Construye la escena desde el GLB (carretera, terreno, pinos, nieve, luces, cámaras, animación). |
 | `scripts/cierre.py` | Dibuja el rótulo de cierre (PNG transparente) que ffmpeg funde sobre la última toma. |
 | `scripts/render.py` | Renderiza la animación a PNG (reanudable). `scripts/foto.py`: fotogramas sueltos. `scripts/giratorio.py`: vistas de revisión del modelo. |
