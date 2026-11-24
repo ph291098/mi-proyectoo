@@ -1,16 +1,19 @@
-import { loadFont } from "@remotion/fonts";
-import { staticFile } from "remotion";
+import { continueRender, delayRender } from "remotion";
+import datos from "./data/fuentes.json";
 
-// Playfair Display Italic (frases emocionales) e Inter (datos y captions). Ambas OFL, servidas en local.
-const fuentes: [string, string, string, "normal" | "italic"][] = [
-  ["Playfair Display", "playfair-display-latin-700-italic.woff2", "700", "italic"],
-  ["Playfair Display", "playfair-display-latin-900-italic.woff2", "900", "italic"],
-  ["Inter", "inter-latin-600-normal.woff2", "600", "normal"],
-  ["Inter", "inter-latin-800-normal.woff2", "800", "normal"],
-  ["Inter", "inter-latin-900-normal.woff2", "900", "normal"],
-];
-for (const [family, archivo, weight, style] of fuentes) {
-  loadFont({ family, url: staticFile(`fonts/${archivo}`), weight, style });
+// Playfair Display Italic (frases emocionales) e Inter (datos y captions). Ambas OFL.
+// Van incrustadas en base64 (src/data/fuentes.json, generado desde public/fonts/): así no dependen de
+// ninguna descarga durante el render, que en algunos navegadores headless se quedaba colgada.
+if (typeof document !== "undefined") {
+  const estilo = document.createElement("style");
+  estilo.textContent = datos
+    .map((f) => `@font-face{font-family:"${f.family}";font-style:${f.style};font-weight:${f.weight};font-display:block;src:url(data:font/woff2;base64,${f.b64}) format("woff2");}`)
+    .join("");
+  document.head.appendChild(estilo);
+  const espera = delayRender("tipografías");
+  Promise.all(datos.map((f) => document.fonts.load(`${f.style} ${f.weight} 40px "${f.family}"`)))
+    .catch(() => undefined)
+    .then(() => continueRender(espera));
 }
 
 export const SERIF = '"Playfair Display", Georgia, serif';
