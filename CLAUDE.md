@@ -25,7 +25,8 @@
   Los 5 pasos del checklist y la portada del ebook son provisionales hasta tener los reales.
 - `suv-promo/`: pieza de muestra (no oficial) de un SUV en carretera nevada para vender vídeos a marcas. Modelo 3D
   reconstruido de 3 imágenes (`modelo/suv.glb`), escena de Blender (`modelo/*.blend`, se regenera con `scripts/escena.py`),
-  vídeo fotorrealista de Seedance 2.5 y animación de Blender en `out/`. En la nube no hay GPU: Blender solo rinde con Cycles CPU.
+  vídeos de Seedance 2.5 (el bueno es `out/suv-nieve-hiperrealista-1080p*.mp4`) y animación de Blender en `out/`.
+  Para que un vídeo de producto salga hiperrealista: primero fotogramas clave fotográficos con GPT Image 2.6, y esos como referencia del vídeo. En la nube no hay GPU: Blender solo rinde con Cycles CPU.
 - Coolvetica tiene licencia de escritorio: nunca se sube al repo (solo su ruta local).
 
 ## Moodboards de vídeo

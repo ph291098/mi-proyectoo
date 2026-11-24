@@ -9,10 +9,12 @@ de referencia que aportó Pablo.
 |---|---|
 | `modelo/suv.glb` | Modelo 3D del SUV (153 000 triángulos, texturas PBR de 2048 px), reconstruido a partir de las tres vistas con Meshy (Higgsfield). |
 | `modelo/suv-carretera-nevada.blend` | Escena de Blender 5.3: el SUV rodando 10 s por una carretera nevada, con tres cámaras ya animadas. Texturas empaquetadas dentro. |
-| `out/suv-nieve-1080p.mp4` | Vídeo fotorrealista de 10 s (1920×1080, 24 fps, H.264, audio a −14 LUFS), generado con Seedance 2.5 a partir de las tres imágenes de referencia: frontal, lateral y dron trasero. |
+| `out/suv-nieve-hiperrealista-1080p.mp4` | **La versión buena.** Vídeo hiperrealista de 8 s (1920×1080, 24 fps, H.264, audio a −14 LUFS): Seedance 2.5 guiado por los tres fotogramas clave de `out/hiperrealista/`. Luz de mañana de invierno, pintura bronce con reflejos, matrícula legible. |
+| `out/suv-nieve-hiperrealista-1080p-con-cierre.mp4` | La misma con el rótulo de cierre. |
+| `out/suv-nieve-1080p.mp4` | Primera versión (hora azul, más oscura y con aspecto de render), 10 s (1920×1080, 24 fps, H.264, audio a −14 LUFS), generado con Seedance 2.5 a partir de las tres imágenes de referencia: frontal, lateral y dron trasero. |
 | `out/suv-nieve-1080p-con-cierre.mp4` | El mismo con el rótulo de cierre («Hecho para el invierno.» + «pieza de muestra · no oficial · @soypablo.ai»). El rótulo se cambia con `scripts/cierre.py`. |
 | `out/animacion-blender.mp4` | La animación renderizada en Blender (Cycles por CPU, a 960×540): es la previsualización 3D, no el acabado final. |
-| `out/portada.jpg` | Fotograma de portada. |
+| `out/portada-hiperrealista.jpg`, `out/portada.jpg` | Fotogramas de portada de cada versión. |
 | `out/hiperrealista/` | Tres fotogramas clave hiperrealistas (2688×1520) hechos con GPT Image 2.6 a partir de las referencias: frontal, lateral y trasera. Son la base para rehacer el vídeo con acabado de rodaje real. |
 | `scripts/escena.py` | Construye la escena desde el GLB (carretera, terreno, pinos, nieve, luces, cámaras, animación). |
 | `scripts/cierre.py` | Dibuja el rótulo de cierre (PNG transparente) que ffmpeg funde sobre la última toma. |
@@ -38,6 +40,11 @@ textura, así que de cerca se ven blandos.
 
 ## Límites del vídeo fotorrealista
 
-Lo genera un modelo de vídeo a partir de las fotos, así que no es exacto al milímetro: la pintura sale
-más gris que el bronce de las referencias y la matrícula delantera queda en blanco. El sonido (rodadura,
-viento y música) también es generado.
+Lo genera un modelo de vídeo, así que no es exacto al milímetro. En la primera versión la pintura sale
+más gris que el bronce de las referencias y la matrícula delantera queda en blanco; la hiperrealista lo
+corrige porque parte de fotogramas clave fotográficos (GPT Image 2.6 sobre las tres referencias) en vez
+de los renders originales. El sonido (rodadura, viento y música) también es generado.
+
+Receta de la versión hiperrealista: 1) tres fotogramas clave con acabado de foto real, uno por toma;
+2) Seedance 2.5 en `omni_reference` con esos tres fotogramas, borrador a 480p para comprobar el coche;
+3) finalizar el borrador a 1080p; 4) audio a −14 LUFS y rótulo con `scripts/cierre.py`.
