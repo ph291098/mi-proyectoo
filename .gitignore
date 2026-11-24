@@ -10,3 +10,7 @@ brag-output*/work/
 
 # vídeo explicativo de Valto: intermedios (tomas de voz, fotogramas, segmentos)
 valto-explicativo/work/
+
+# reel «Después de las 5 PM»: dependencias e intermedios
+despues-de-las-5pm/node_modules/
+despues-de-las-5pm/work/
