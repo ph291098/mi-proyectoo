@@ -23,6 +23,9 @@
 - `despues-de-las-5pm/`: reel vertical de 32 s (Remotion) que vende el ebook «Después de las 5 PM»: ilustración
   por capas en `public/arte/`, texto en `src/contenido.ts`, audio sintetizado con `scripts/audio.py`, renders en `out/`.
   Los 5 pasos del checklist y la portada del ebook son provisionales hasta tener los reales.
+- `suv-promo/`: pieza de muestra (no oficial) de un SUV en carretera nevada para vender vídeos a marcas. Modelo 3D
+  reconstruido de 3 imágenes (`modelo/suv.glb`), escena de Blender (`modelo/*.blend`, se regenera con `scripts/escena.py`),
+  vídeo fotorrealista de Seedance 2.5 y animación de Blender en `out/`. En la nube no hay GPU: Blender solo rinde con Cycles CPU.
 - Coolvetica tiene licencia de escritorio: nunca se sube al repo (solo su ruta local).
 
 ## Moodboards de vídeo
