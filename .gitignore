@@ -14,3 +14,6 @@ valto-explicativo/work/
 # reel «Después de las 5 PM»: dependencias e intermedios
 despues-de-las-5pm/node_modules/
 despues-de-las-5pm/work/
+
+# promo del SUV: intermedios (referencias, pruebas, fotogramas del render)
+suv-promo/work/
